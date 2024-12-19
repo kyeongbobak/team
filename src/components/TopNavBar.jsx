@@ -4,26 +4,34 @@ import logo from "../../public/img/logo.png";
 
 export default function TopNavBar() {
   return (
-    <div className="flex mt-[40px] mx-[140px] justify-between">
+    <div className="flex mt-[40px] mx-[140px] justify-between items-center p-[30px]">
       <StyledLink href={"/"}>
-        <Image src={logo} alt="" className="w-[4.375rem]" />
+        <Image src={logo} alt="" />
       </StyledLink>
-      <ul className="flex flex-row space-x-[50px] text-sm">
+      <ul className="flex flex-row space-x-[50px] items-center text-md text-white">
         <li>
-          <StyledLink href={"/"}>Product</StyledLink>
+          <StyledLink className="text-white" href={"/"}>
+            Product
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href={"/"}>Service</StyledLink>
+          <StyledLink className="text-white" href={"/"}>
+            Service
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href={"/"}>Contact</StyledLink>
+          <StyledLink className="text-white" href={"/"}>
+            Contact
+          </StyledLink>
         </li>
         <li>
-          <StyledLink href={"/"}>Log In</StyledLink>
+          <StyledLink className="text-white" href={"/"}>
+            Log In
+          </StyledLink>
         </li>
         <li>
           <StyledLink href={"/"}>
-            <button>Get Access</button>
+            <button className="bg-white bg-opacity-20 w-[105px] h-[42px] text-center text-white">Get Access</button>
           </StyledLink>
         </li>
       </ul>
