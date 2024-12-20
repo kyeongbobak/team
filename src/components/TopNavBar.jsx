@@ -4,11 +4,11 @@ import logo from "../../public/img/logo.png";
 
 export default function TopNavBar() {
   return (
-    <div className="flex mt-[40px] mx-[140px] justify-between items-center p-[30px]">
+    <div className="flex  justify-between items-center mt-[40px] mx-[140px]">
       <StyledLink href={"/"}>
-        <Image src={logo} alt="" />
+        <Image src={logo} alt="logo" />
       </StyledLink>
-      <ul className="flex flex-row space-x-[50px] items-center text-md text-white">
+      <ul className="flex flex-row items-center space-x-[50px]   text-white text-md ">
         <li>
           <StyledLink className="text-white" href={"/"}>
             Product
@@ -31,7 +31,7 @@ export default function TopNavBar() {
         </li>
         <li>
           <StyledLink href={"/"}>
-            <button className="bg-white bg-opacity-20 w-[105px] h-[42px] text-center text-white">Get Access</button>
+            <button className="bg-white bg-opacity-20 w-[105px] h-[42px] text-white text-center ">Get Access</button>
           </StyledLink>
         </li>
       </ul>
