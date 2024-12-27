@@ -9,7 +9,7 @@ export default function TopNavBar() {
         <StyledLink href={"/"}>
           <Image src={logo} alt="logo" />
         </StyledLink>
-        <ul className="flex flex-row items-center space-x-[50px]   text-white text-md ">
+        <ul className="flex flex-row items-center space-x-[50px] text-white text-md ">
           <li>
             <StyledLink className="text-white" href={"/"}>
               Product

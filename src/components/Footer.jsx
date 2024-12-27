@@ -7,14 +7,13 @@ export default function Footer() {
   return (
     <div className="bg-blue h-[446px] ">
       <div className="flex mx-[140px] pt-[50px] justify-between">
-        <div className="text-white text-xs">
+        <div className="text-white text-xs w-[168px] h-[81px]">
           <Image src={logo} alt="logo" />
-          <p className="pt-[20px]">Collaboration platform for</p>
-          <p>modern teams.</p>
+          <p className="pt-[20px]">Collaboration platform for modern teams.</p>
         </div>
-        <div className="flex ml-[128px] space-x-[180px]">
+        <div className="flex ml-[128px]">
           <dl className="text-xs space-y-[16px]">
-            <dt className="text-white text-regular font-bold">Company</dt>
+            <dt className="text-white text-regular font-bold w-[169px] h-[22px]">Company</dt>
             <dd>
               <StyledLink className="text-white" href="/">
                 Product
@@ -31,7 +30,7 @@ export default function Footer() {
               </StyledLink>
             </dd>
           </dl>
-          <dl className="text-xs space-y-[16px]">
+          <dl className="text-xs space-y-[16px] w-[169px] h-[22px]">
             <dt className="text-white text-regular font-bold">Features</dt>
             <dd>
               <StyledLink className="text-white" href="/">
@@ -54,16 +53,15 @@ export default function Footer() {
               </StyledLink>
             </dd>
           </dl>
-          <div className="text-xs text-white space-y-[16px]">
+          <div className="text-xs text-white space-y-[16px] w-[169px] h-[22px]">
             <p className="text-white text-regular font-bold">Contact Us</p>
             <p>info@chatapp.com</p>
-            <p>1-800-200-300</p>
             <div>
               <p>1010 Sunset Blvd,</p>
               <p>Palo Alto, CA</p>
             </div>
           </div>
-          <div className="text-xs text-white space-y-[16px]">
+          <div className="text-xs text-white space-y-[16px] ">
             <p className="text-white text-regular font-bold">Stay up to date</p>
             <p>Subscribe to our newsletter.</p>
             <p>1-800-200-300</p>

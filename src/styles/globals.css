@@ -4,12 +4,12 @@
 
 :root {
   font-size: 10px;
-  background-color: mediumaquamarine;
+  background-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: mediumaquamarine;
+    background-color: white;
   }
 }
 
