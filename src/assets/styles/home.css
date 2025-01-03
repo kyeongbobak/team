@@ -1,0 +1,36 @@
+.section-layout {
+  @apply flex;
+}
+
+.section-content-width {
+  @apply w-[367px];
+}
+
+.section-title {
+  /* 나중에 font style 변경 후에 text 사이즈 55px로 바꿔주기 */
+  @apply w-[367px] text-[53px] leading-[70px] text-blue;
+}
+
+.section-description-layout {
+  @apply w-[367px] text-regular mt-[20px] text-blue;
+}
+
+.lastsection-description-layout {
+  @apply w-[527px] text-regular text-blue;
+}
+
+.section-link-layout {
+  @apply mt-[40px] flex items-center mr-[2px] text-md;
+}
+
+.section-link {
+  @apply text-main  pr-[4px];
+}
+
+.section-link-icon {
+  @apply w-[16px] h-[8px];
+}
+
+.section-image-size {
+  @apply w-[567px] h-[567px];
+}

@@ -10,11 +10,7 @@ module.exports = {
         orange: "#f7aa00",
         white: "#f5f7fa",
         blue: "#223b5d",
-        min: "var(--min)",
-        base: "var(--base)",
-        md: "var(--md)",
-        lg: "var(--lg)",
-        max: "var(--max)",
+        navy: "#39485D",
       },
       fontSize: {
         xs: "1.3rem",
@@ -26,6 +22,9 @@ module.exports = {
         xl: "2.2rem",
         "2xl": "2.4rem",
         "3xl": "5.5rem",
+      },
+      fontFamily: {
+        cabin: ["var(--font-cabin)", "sans-serif"],
       },
     },
   },
