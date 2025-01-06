@@ -2,77 +2,78 @@ import StyledLink from "next/link";
 import Image from "next/image";
 import logo from "../../public/img/logo.png";
 import arrowForward from "../../public/img/arrow_forward.png";
+import "../assets/styles/footer.css";
 
 export default function Footer() {
   return (
-    <div className="bg-navy h-[446px] ">
-      <div className="flex container pt-[50px] justify-between">
-        <div className="text-white text-xs w-[168px] h-[81px] mx-auto">
+    <div className="bg-navy py-[60px]">
+      <div className="container footer-layout">
+        <div className="mr-[130px]">
           <Image src={logo} alt="logo" />
-          <p className="pt-[20px]">Collaboration platform for modern teams.</p>
+          <p className="w-[148px] h-[40px] mt-[18px] text-base text-[#fff9]">Collaboration platform for modern teams.</p>
         </div>
-        <div className="flex ml-[128px]">
-          <dl className="text-xs space-y-[16px]">
-            <dt className="text-white text-regular font-bold w-[169px] h-[22px]">Company</dt>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                Product
-              </StyledLink>
-            </dd>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                Blog
-              </StyledLink>
-            </dd>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                Support
-              </StyledLink>
-            </dd>
-          </dl>
-          <dl className="text-xs space-y-[16px] w-[169px] h-[22px]">
-            <dt className="text-white text-regular font-bold">Features</dt>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                Screen Sharing
-              </StyledLink>
-            </dd>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                iOS & Android Apps
-              </StyledLink>
-            </dd>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                File Sharing
-              </StyledLink>
-            </dd>
-            <dd>
-              <StyledLink className="text-white" href="/">
-                User Management
-              </StyledLink>
-            </dd>
-          </dl>
-          <div className="text-xs text-white space-y-[16px] w-[169px] h-[22px]">
-            <p className="text-white text-regular font-bold">Contact Us</p>
-            <p>info@chatapp.com</p>
-            <p>1-800-200-300</p>
-            <div>
-              <p>1010 Sunset Blvd,</p>
-              <p>Palo Alto, CA</p>
+        <div className="w-[856px] footer-layout">
+          <nav className="footer-nav">
+            <h3 className="footer-nav-title">Company</h3>
+            <ul className="footer-nav-item">
+              <li>
+                <StyledLink className="" href="/">
+                  Product
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink className="" href="/">
+                  Blog
+                </StyledLink>
+              </li>
+              <li>
+                <StyledLink className="" href="/">
+                  Support
+                </StyledLink>
+              </li>
+            </ul>
+          </nav>
+          <nav className="footer-nav">
+            <h3 className="footer-nav-title">Features</h3>
+            <ul className="footer-nav-item">
+              <li>
+                <StyledLink href="/">Screen Sharing</StyledLink>
+              </li>
+              <li>
+                <StyledLink href="/">iOS & Android Apps</StyledLink>
+              </li>
+              <li>
+                <StyledLink href="/">File Sharing</StyledLink>
+              </li>
+              <li>
+                <StyledLink href="/">User Management</StyledLink>
+              </li>
+            </ul>
+          </nav>
+          <nav className="footer-nav">
+            <h3 className="footer-nav-title">Contact Us</h3>
+            <div className="footer-nav-item">
+              <p>info@chatapp.com</p>
+              <p>1-800-200-300</p>
+              <div>
+                <p>1010 Sunset Blvd,</p>
+                <p>Palo Alto, CA</p>
+              </div>
             </div>
-          </div>
-          <div className="text-xs text-white space-y-[16px] ">
-            <p className="text-white text-regular font-bold">Stay up to date</p>
-            <p>Subscribe to our newsletter.</p>
-
-            <input className="w-[267px] h-[48px] bg-white bg-opacity-20 rounded-[4px] pl-[16px]" placeholder="Email" type="text" />
-            <button>
-              <Image className="bg-opacity-30 absolute mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
-            </button>
+          </nav>
+          <div className="footer-nav">
+            <h3 className="footer-nav-title">Stay up to date</h3>
+            <div className="footer-nav-item">
+              <p>Subscribe to our newsletter.</p>
+              <input className="w-[296px] h-[56px] text-[#fff9] bg-white bg-opacity-20 pl-[16px] rounded-[4px]" placeholder="Email" type="text" />
+              <button>
+                <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <div className="container mt-[180px] text-xs text-[#fff9]">© Copyright ChatApp Inc.</div>
     </div>
   );
 }

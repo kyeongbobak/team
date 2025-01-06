@@ -1,0 +1,15 @@
+.footer-layout {
+  @apply flex justify-between;
+}
+
+.footer-nav {
+  @apply mx-[15px];
+}
+
+.footer-nav-title {
+  @apply mb-[20px] text-regular font-normal text-white;
+}
+
+.footer-nav-item {
+  @apply space-y-[10px] text-xs leading-[23px] text-[#fff9];
+}
