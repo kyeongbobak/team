@@ -1,22 +1,22 @@
-.section-layout {
-  @apply flex;
+.form-container {
+  @apply h-[56px] rounded-[4px];
 }
 
-.section-content-width {
-  @apply w-[367px];
+.section-layout {
+  @apply flex items-center justify-between py-[80px];
 }
 
 .section-title {
   /* 나중에 font style 변경 후에 text 사이즈 55px로 바꿔주기 */
-  @apply w-[367px] text-[53px] leading-[70px] text-blue;
+  @apply w-[367px] text-[53px] leading-[67px] mb-[10px] text-blue;
 }
 
 .section-description-layout {
-  @apply w-[367px] text-regular mt-[20px] text-blue;
+  @apply w-[367px] text-regular mb-[10px] leading-[26px] text-gray;
 }
 
 .lastsection-description-layout {
-  @apply w-[527px] text-regular text-blue;
+  @apply w-[420px] text-regular leading-[26px] text-gray;
 }
 
 .section-link-layout {
@@ -31,6 +31,6 @@
   @apply w-[16px] h-[8px];
 }
 
-.section-image-size {
-  @apply w-[567px] h-[567px];
+.section-main-image {
+  @apply w-[565px];
 }
