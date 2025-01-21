@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"  
+  url      = env("DATABASE_URL") 
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Reviewer {
+  id       Int    @id @default(autoincrement())
+  reviewer     String
+  content String
+  user_info String
+  imageUrl String
+  
+    @@map("reviewer") 
+}

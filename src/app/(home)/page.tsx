@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import StyledLink from "next/link";
 import heroBG from "../../../public/img/heroBG.png";
@@ -6,8 +8,34 @@ import mainImage2 from "../../../public/img/mainImage2.png";
 import mainImage3 from "../../assets/img/mainImage3.png";
 import arrowRight from "../../../public/img/arrowRight.png";
 import "../../assets/styles/home.css";
+import { useEffect, useState } from "react";
+
+interface reviewItem {
+  id: number;
+  reviewer: string;
+  content: string;
+  user_info: string;
+  imageUrl: string;
+}
 
 export default function Home() {
+  const [reviewList, setReviewList] = useState<reviewItem[]>([]);
+
+  useEffect(() => {
+    const getReviewList = async () => {
+      try {
+        const response = await fetch("/api/review");
+        const result = await response.json();
+        setReviewList(result);
+        console.log(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    getReviewList();
+  }, []);
+
   return (
     <>
       <div className="container h-screen">
@@ -81,6 +109,18 @@ export default function Home() {
             <Image className="section-main-image" src={mainImage3} alt="mainImage3" />
           </StyledLink>
         </section>
+        <div>
+          <h1>Data List</h1>
+          <ul>
+            {reviewList.map((item) => (
+              <li key={item.id}>
+                <p>{item.content}</p>
+                <p>{item.user_info}</p>
+                <Image src={item.imageUrl} alt="profile-image" width="200" height="200" />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </>
   );
