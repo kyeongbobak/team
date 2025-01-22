@@ -39,7 +39,7 @@ export default function Home() {
     getReviewList();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setActive(true);
     setEmail("");
@@ -54,12 +54,12 @@ export default function Home() {
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
             <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
             <div className="mt-[55px]">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleOnSubmit}>
                 <input type="text" className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} value={email} />
                 {active === true ? (
                   <button className="form-container button-layout bg-orange">please wait...</button>
                 ) : (
-                  <button type="submit" onClick={handleSubmit} className="form-container button-layout  bg-main">
+                  <button type="submit" className="form-container button-layout bg-main">
                     Get Early Access
                   </button>
                 )}

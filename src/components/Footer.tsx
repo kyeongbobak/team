@@ -1,10 +1,22 @@
+"use client";
+
 import StyledLink from "next/link";
 import Image from "next/image";
 import logo from "../../public/img/logo.png";
 import arrowForward from "../../public/img/arrow_forward.png";
+import check from "../assets/img/check.png";
 import "../assets/styles/footer.css";
+import { useState } from "react";
 
 export default function Footer() {
+  const [email, setEmail] = useState<string>("");
+  const [active, setActive] = useState<boolean>(false);
+
+  const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setActive(true);
+  };
+
   return (
     <div className="bg-navy py-[60px]">
       <div className="container footer-layout">
@@ -65,10 +77,19 @@ export default function Footer() {
             <h3 className="footer-nav-title">Stay up to date</h3>
             <div className="footer-nav-item">
               <p>Subscribe to our newsletter.</p>
-              <input className="w-[296px] h-[56px] text-[#fff9] bg-white bg-opacity-20 pl-[16px] rounded-[4px]" placeholder="Email" type="text" />
-              <button>
-                <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
-              </button>
+              {active === true ? (
+                <div className="flex justify-between items-center gap-[10px]">
+                  <p className="text-orange">Subscription successfully completed</p>
+                  <Image src={check} alt="check" />
+                </div>
+              ) : (
+                <form onSubmit={handleOnSubmit}>
+                  <input className="w-[296px] h-[56px] text-[#fff9] bg-white bg-opacity-20 pl-[16px] rounded-[4px]" placeholder="Email" type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
+                  <button>
+                    <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
