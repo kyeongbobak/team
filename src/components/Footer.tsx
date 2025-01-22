@@ -7,13 +7,18 @@ import arrowForward from "../../public/img/arrow_forward.png";
 import check from "../assets/img/check.png";
 import "../assets/styles/footer.css";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export default function Footer() {
-  const [email, setEmail] = useState<string>("");
   const [active, setActive] = useState<boolean>(false);
 
-  const handleOnSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<{ email: string }>();
+
+  const handleOnSubmit = () => {
     setActive(true);
   };
 
@@ -83,11 +88,19 @@ export default function Footer() {
                   <Image src={check} alt="check" />
                 </div>
               ) : (
-                <form onSubmit={handleOnSubmit}>
-                  <input className="w-[296px] h-[56px] text-[#fff9] bg-white bg-opacity-20 pl-[16px] rounded-[4px]" placeholder="Email" type="text" onChange={(e) => setEmail(e.target.value)} value={email} />
+                <form onSubmit={handleSubmit(handleOnSubmit)}>
+                  <input
+                    type="email"
+                    className="w-[296px] h-[56px] text-[#fff9] bg-white bg-opacity-20 pl-[16px] rounded-[4px]"
+                    placeholder="Email"
+                    {...register("email", {
+                      required: "Please enter your email !",
+                    })}
+                  />
                   <button>
                     <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
                   </button>
+                  {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
                 </form>
               )}
             </div>

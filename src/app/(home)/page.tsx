@@ -10,6 +10,7 @@ import arrowRight from "../../../public/img/arrowRight.png";
 import stars from "../../assets/img/stars.png";
 import "../../assets/styles/home.css";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 interface reviewItem {
   id: number;
@@ -22,7 +23,13 @@ interface reviewItem {
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
   const [active, setActive] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>("");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<{ email: string }>();
 
   useEffect(() => {
     const getReviewList = async () => {
@@ -39,10 +46,11 @@ export default function Home() {
     getReviewList();
   }, []);
 
-  const handleOnSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleOnSubmit = () => {
     setActive(true);
-    setEmail("");
+    reset({
+      email: "",
+    });
   };
 
   return (
@@ -54,10 +62,17 @@ export default function Home() {
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
             <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
             <div className="mt-[55px]">
-              <form onSubmit={handleOnSubmit}>
-                <input type="text" className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} value={email} />
+              <form onSubmit={handleSubmit(handleOnSubmit)}>
+                <input
+                  type="email"
+                  className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black"
+                  placeholder="Your Email"
+                  {...register("email", {
+                    required: "Please enter your email !",
+                  })}
+                />
                 {active === true ? (
-                  <button className="form-container button-layout bg-orange">please wait...</button>
+                  <button className="form-container button-layout bg-orange">Get Access</button>
                 ) : (
                   <button type="submit" className="form-container button-layout bg-main">
                     Get Early Access
@@ -65,6 +80,7 @@ export default function Home() {
                 )}
               </form>
             </div>
+            {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
           </div>
         </div>
       </div>
