@@ -2,21 +2,25 @@
   @apply h-[56px] rounded-[4px];
 }
 
+.button-layout {
+  @apply w-[165px] ml-[10px] text-md text-center font-bold;
+}
+
 .section-layout {
   @apply flex items-center justify-between py-[80px];
 }
 
 .section-title {
   /* 나중에 font style 변경 후에 text 사이즈 55px로 바꿔주기 */
-  @apply w-[367px] text-[53px] leading-[67px] mb-[10px] text-blue;
+  @apply w-[367px]  leading-[67px] mb-[10px] text-[53px] text-blue;
 }
 
 .section-description-layout {
-  @apply w-[367px] text-regular mb-[10px] leading-[26px] text-gray;
+  @apply w-[367px] mb-[10px] leading-[26px] text-regular  text-gray;
 }
 
-.lastsection-description-layout {
-  @apply w-[420px] text-regular leading-[26px] text-gray;
+.last-section-description-layout {
+  @apply w-[420px] leading-[26px] text-regular text-gray;
 }
 
 .section-link-layout {

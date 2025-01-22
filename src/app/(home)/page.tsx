@@ -7,6 +7,7 @@ import mockup from "../../assets/img/mockup.png";
 import mainImage2 from "../../../public/img/mainImage2.png";
 import mainImage3 from "../../assets/img/mainImage3.png";
 import arrowRight from "../../../public/img/arrowRight.png";
+import stars from "../../assets/img/stars.png";
 import "../../assets/styles/home.css";
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,8 @@ interface reviewItem {
 
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
+  const [active, setActive] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
 
   useEffect(() => {
     const getReviewList = async () => {
@@ -36,6 +39,12 @@ export default function Home() {
     getReviewList();
   }, []);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setActive(true);
+    setEmail("");
+  };
+
   return (
     <>
       <div className="container h-screen">
@@ -45,8 +54,16 @@ export default function Home() {
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
             <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
             <div className="mt-[55px]">
-              <input type="text" className="form-container w-[296px] pl-[16px] text-sm" placeholder="Your Email" />
-              <button className="form-container w-[165px] ml-[10px] bg-main text-md text-center  font-bold">Get Early Access</button>
+              <form onSubmit={handleSubmit}>
+                <input type="text" className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black" placeholder="Your Email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                {active === true ? (
+                  <button className="form-container button-layout bg-orange">please wait...</button>
+                ) : (
+                  <button type="submit" onClick={handleSubmit} className="form-container button-layout  bg-main">
+                    Get Early Access
+                  </button>
+                )}
+              </form>
             </div>
           </div>
         </div>
@@ -89,10 +106,10 @@ export default function Home() {
           </div>
         </section>
         <section className="section-layout my-[80px]">
-          <div className="lastsection-description-layout mr-[68px]">
+          <div className="last-section-description-layout mr-[68px]">
             <div>
               <p className="section-title">Scheduling that actually works</p>
-              <div>
+              <div className="">
                 <p>Intergrate the Team calendar with your favorite calendar app, be it Google Calendar or iCal.</p>
                 <br />
                 <p>Each team member works with their favorite calendar, while all the data is synced with the master calendar.</p>
@@ -110,13 +127,21 @@ export default function Home() {
           </StyledLink>
         </section>
         <div>
-          <h1>Data List</h1>
-          <ul>
+          <h1 className="text-3xl text-blue">What people say about Team App</h1>
+          <ul className="flex mt-[120px] mb-[182px] gap-[30px] ">
             {reviewList.map((item) => (
-              <li key={item.id}>
-                <p>{item.content}</p>
-                <p>{item.user_info}</p>
-                <Image src={item.imageUrl} alt="profile-image" width="200" height="200" />
+              <li className="bg-[#fff] w-[367px] h-[396px] rounded-[7px] drop-shadow-xl" key={item.id}>
+                <div className="pt-[60px] pl-[38px]">
+                  <Image width="124" height="24" src={stars} alt="stars" />
+                  <p className="mt-[30px] w-[267px] h-[116px] text-gray text-regular ">{item.content}</p>
+                  <div className="flex mt-[70px] gap-[15px] items-center ">
+                    {item.imageUrl ? <Image src={item.imageUrl} alt="profile-image" width="50" height="50" /> : <p>No Image</p>}
+                    <div>
+                      <p className="text-blue text-regular">{item.reviewer}</p>
+                      <p className="text-gray text-sm">{item.user_info}</p>
+                    </div>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
