@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import StyledLink from "next/link";
-import heroBG from "../../../public/img/heroBG.png";
+import hero_bg from "../../assets/img/hero_bg.png";
 import mockup from "../../assets/img/mockup.png";
-import mainImage2 from "../../../public/img/mainImage2.png";
-import mainImage3 from "../../assets/img/mainImage3.png";
-import arrowRight from "../../../public/img/arrowRight.png";
+import main_image2 from "../../assets/img/main_image2.png";
+import main_image3 from "../../assets/img/main_image3.png";
+import arrow_right from "../../assets/img/arrow_right.png";
 import stars from "../../assets/img/stars.png";
+import arrow_back from "../../assets/img/arrow_back.png";
+import arrow_forward from "../../assets/img/arrow_forward.png";
 import "../../assets/styles/home.css";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -56,7 +58,7 @@ export default function Home() {
   return (
     <>
       <div className="container h-screen">
-        <Image className="relative object-cover bg-center" layout="fill" src={heroBG} alt="heroBG" priority />
+        <Image className="relative object-cover bg-center" layout="fill" src={hero_bg} alt="hero_bg" priority />
         <div className="absolute text-white ">
           <div className="w-[496px] mt-[240px]">
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
@@ -94,7 +96,7 @@ export default function Home() {
                 <StyledLink className="section-link" href={"/"}>
                   Lean More
                 </StyledLink>
-                <Image className="section-link-icon " src={arrowRight} alt="arrowRight" />
+                <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" />
               </div>
             </div>
             <Image className="" src={mockup} alt="mockup" />
@@ -104,7 +106,7 @@ export default function Home() {
       <div className="container my-[80px]">
         <section className="section-layout">
           <StyledLink href={"/"}>
-            <Image className="section-main-image" src={mainImage2} alt="mainImage" />
+            <Image className="section-main-image" src={main_image2} alt="main_image2" />
           </StyledLink>
           <div>
             <div>
@@ -117,7 +119,7 @@ export default function Home() {
               <StyledLink className="section-link" href={"/"}>
                 Lean More
               </StyledLink>
-              <Image className="section-link-icon" src={arrowRight} alt="arrowRight" />
+              <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" />
             </div>
           </div>
         </section>
@@ -135,32 +137,36 @@ export default function Home() {
               <StyledLink className="section-link" href={"/"}>
                 Lean More
               </StyledLink>
-              <Image className="section-link-icon " src={arrowRight} alt="arrowRight" />
+              <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" />
             </div>
           </div>
           <StyledLink href={"/"}>
-            <Image className="section-main-image" src={mainImage3} alt="mainImage3" />
+            <Image className="section-main-image" src={main_image3} alt="main_image3" />
           </StyledLink>
         </section>
-        <div>
+      </div>
+      <div className="overflow-x-hidden">
+        <div className="container">
           <h1 className="text-3xl text-blue">What people say about Team App</h1>
-          <ul className="flex mt-[120px] mb-[182px] gap-[30px] ">
+          <ul className="flex mt-[120px] mb-[60px] gap-[30px] ">
             {reviewList.map((item) => (
-              <li className="bg-[#fff] w-[367px] h-[396px] rounded-[7px] drop-shadow-xl" key={item.id}>
-                <div className="pt-[60px] pl-[38px]">
-                  <Image width="124" height="24" src={stars} alt="stars" />
-                  <p className="mt-[30px] w-[267px] h-[116px] text-gray text-regular ">{item.content}</p>
-                  <div className="flex mt-[70px] gap-[15px] items-center ">
-                    {item.imageUrl ? <Image src={item.imageUrl} alt="profile-image" width="50" height="50" /> : <p>No Image</p>}
-                    <div>
-                      <p className="text-blue text-regular">{item.reviewer}</p>
-                      <p className="text-gray text-sm">{item.user_info}</p>
-                    </div>
+              <li className="bg-[#fff] w-[367px] h-[396px] rounded-[7px] drop-shadow-xl pt-[60px] px-[38px]" key={item.id}>
+                <Image width="124" height="24" src={stars} alt="stars" />
+                <p className="mt-[30px] w-[267px] h-[116px] text-gray text-regular ">{item.content}</p>
+                <div className="flex mt-[70px] gap-[15px] items-center ">
+                  {item.imageUrl ? <Image src={item.imageUrl} alt="profile-image" width="50" height="50" /> : <p>No Image</p>}
+                  <div>
+                    <p className="text-blue text-regular">{item.reviewer}</p>
+                    <p className="text-gray text-sm">{item.user_info}</p>
                   </div>
                 </div>
               </li>
             ))}
           </ul>
+          <div className="flex row justify-end mb-[160px] gap-[10px] mr-[5px]">
+            <Image src={arrow_back} alt="arrow_back" />
+            <Image src={arrow_forward} alt="arrow_forward" />
+          </div>
         </div>
       </div>
     </>

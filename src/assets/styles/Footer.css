@@ -3,7 +3,7 @@
 }
 
 .footer-nav {
-  @apply mx-[15px];
+  @apply ml-[15px];
 }
 
 .footer-nav-title {

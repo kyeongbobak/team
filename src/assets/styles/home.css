@@ -19,6 +19,10 @@
   @apply w-[367px] mb-[10px] leading-[26px] text-regular  text-gray;
 }
 
+.icon-hover-move {
+  @apply transform transition-transform duration-300 hover:translate-x-2;
+}
+
 .last-section-description-layout {
   @apply w-[420px] leading-[26px] text-regular text-gray;
 }
