@@ -33,6 +33,9 @@ module.exports = {
         semibold: "600",
         bold: "700",
       },
+      transitionDuration: {
+        2000: "2000ms",
+      },
     },
   },
   plugins: [],

@@ -10,8 +10,11 @@ import arrow_right from "../../assets/img/arrow_right.png";
 import stars from "../../assets/img/stars.png";
 import arrow_back from "../../assets/img/arrow_back.png";
 import arrow_forward from "../../assets/img/arrow_forward.png";
+import animationImageTop from "../../assets/img/animationImageTop.png";
+import animationImageBottom from "../../assets/img/animationImageBottom.png";
+import animationImage from "../../assets/img/animationImage.png";
 import "../../assets/styles/home.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 interface reviewItem {
@@ -25,6 +28,10 @@ interface reviewItem {
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
   const [active, setActive] = useState<boolean>(false);
+
+  const animationImageTopRef = useRef<HTMLImageElement>(null);
+  const animationImageBottomRef = useRef<HTMLImageElement>(null);
+  const animationImageRef = useRef<HTMLImageElement>(null);
 
   const {
     register,
@@ -46,6 +53,23 @@ export default function Home() {
     };
 
     getReviewList();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      },
+      { threshold: [0, 0.5, 1], rootMargin: "100px 0px" }
+    );
+
+    if (animationImageTopRef.current) observer.observe(animationImageTopRef.current);
+    if (animationImageBottomRef.current) observer.observe(animationImageBottomRef.current);
+    if (animationImageRef.current) observer.observe(animationImageRef.current);
   }, []);
 
   const handleOnSubmit = () => {
@@ -99,15 +123,17 @@ export default function Home() {
                 <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" />
               </div>
             </div>
-            <Image className="" src={mockup} alt="mockup" />
+            <Image src={mockup} alt="mockup" />
           </div>
         </div>
       </section>
       <div className="container my-[80px]">
         <section className="section-layout">
-          <StyledLink href={"/"}>
-            <Image className="section-main-image" src={main_image2} alt="main_image2" />
-          </StyledLink>
+          <div className="relative">
+            <Image ref={animationImageTopRef} className="absolute w-[227px] mt-[43px] ml-[243px] fade-in-out-fast" src={animationImageTop} alt="animationImageTop" />
+            <Image ref={animationImageBottomRef} className="absolute w-[227px] mt-[191px] ml-[243px] fade-in-out-slow" src={animationImageBottom} alt="animationImageBottom" />
+            <Image className=" section-main-image" src={main_image2} alt="main_image2" />
+          </div>
           <div>
             <div>
               <p className="section-title">Simple task management</p>
@@ -127,7 +153,7 @@ export default function Home() {
           <div className="last-section-description-layout mr-[68px]">
             <div>
               <p className="section-title">Scheduling that actually works</p>
-              <div className="">
+              <div>
                 <p>Intergrate the Team calendar with your favorite calendar app, be it Google Calendar or iCal.</p>
                 <br />
                 <p>Each team member works with their favorite calendar, while all the data is synced with the master calendar.</p>
@@ -140,9 +166,10 @@ export default function Home() {
               <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" />
             </div>
           </div>
-          <StyledLink href={"/"}>
+          <div className="relative">
+            <Image ref={animationImageRef} className="absolute mt-[50px] ml-[50px] fade-in-out-fast" width="225" src={animationImage} alt="animationImage" />
             <Image className="section-main-image" src={main_image3} alt="main_image3" />
-          </StyledLink>
+          </div>
         </section>
       </div>
       <div className="overflow-x-hidden">

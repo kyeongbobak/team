@@ -23,6 +23,30 @@
   @apply transform transition-transform duration-300 hover:translate-x-2;
 }
 
+.fade-in-out-fast {
+  @apply opacity-0 transition-opacity duration-1000 ease-in-out;
+}
+
+.fade-in-out-fast.visible {
+  @apply opacity-100;
+}
+
+.fade-in-out-slow {
+  @apply opacity-0 transition-opacity duration-2000 ease-in-out;
+}
+
+.fade-in-out-slow.visible {
+  @apply opacity-100;
+}
+
+.fade-in-out {
+  @apply opacity-0 transform translate-y-20 duration-2000 ease-in-out;
+}
+
+.fade-in-out.visible {
+  @apply opacity-100;
+}
+
 .last-section-description-layout {
   @apply w-[420px] leading-[26px] text-regular text-gray;
 }
