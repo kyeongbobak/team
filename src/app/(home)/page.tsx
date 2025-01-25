@@ -48,7 +48,6 @@ export default function Home() {
         const response = await fetch("/api/review");
         const result = await response.json();
         setReviewList(result);
-        console.log(result);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
