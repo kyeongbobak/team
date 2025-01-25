@@ -28,10 +28,12 @@ interface reviewItem {
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
   const [active, setActive] = useState<boolean>(false);
+  const [offset, setOffset] = useState(0);
 
   const animationImageTopRef = useRef<HTMLImageElement>(null);
   const animationImageBottomRef = useRef<HTMLImageElement>(null);
   const animationImageRef = useRef<HTMLImageElement>(null);
+  const ulRef = useRef<HTMLUListElement>(null);
 
   const {
     register,
@@ -76,6 +78,18 @@ export default function Home() {
     setActive(true);
     reset({
       email: "",
+    });
+  };
+
+  const slideWidth = 180;
+  const maxOffset = -(slideWidth * (reviewList.length - 3));
+
+  const handleSlide = (direction: "left" | "right") => {
+    setOffset((prevOffset) => {
+      let newOffset = direction === "right" ? prevOffset - slideWidth : prevOffset + slideWidth;
+      newOffset = Math.max(newOffset, maxOffset);
+      newOffset = Math.min(newOffset, 0);
+      return newOffset;
     });
   };
 
@@ -175,7 +189,7 @@ export default function Home() {
       <div className="overflow-x-hidden">
         <div className="container">
           <h1 className="text-3xl text-blue">What people say about Team App</h1>
-          <ul className="flex mt-[120px] mb-[60px] gap-[30px] ">
+          <ul ref={ulRef} className="flex mt-[120px] mb-[60px] gap-[30px] transition-transform duration-300" style={{ transform: `translateX(${offset}px)` }}>
             {reviewList.map((item) => (
               <li className="bg-[#fff] w-[367px] h-[396px] rounded-[7px] drop-shadow-xl pt-[60px] px-[38px]" key={item.id}>
                 <Image width="124" height="24" src={stars} alt="stars" />
@@ -190,9 +204,13 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <div className="flex row justify-end mb-[160px] gap-[10px] mr-[5px]">
-            <Image src={arrow_back} alt="arrow_back" />
-            <Image src={arrow_forward} alt="arrow_forward" />
+          <div className="flex justify-end mb-[160px] gap-[10px]">
+            <button onClick={() => handleSlide("left")}>
+              <Image src={arrow_back} alt="arrow_back" />
+            </button>
+            <button onClick={() => handleSlide("right")}>
+              <Image src={arrow_forward} alt="arrow_forward" />
+            </button>
           </div>
         </div>
       </div>
