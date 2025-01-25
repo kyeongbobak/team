@@ -28,7 +28,7 @@ interface reviewItem {
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
   const [active, setActive] = useState<boolean>(false);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState<number>(0);
 
   const animationImageTopRef = useRef<HTMLImageElement>(null);
   const animationImageBottomRef = useRef<HTMLImageElement>(null);
@@ -81,10 +81,10 @@ export default function Home() {
     });
   };
 
-  const slideWidth = 180;
-  const maxOffset = -(slideWidth * (reviewList.length - 3));
-
   const handleSlide = (direction: "left" | "right") => {
+    const slideWidth = 180;
+    const maxOffset = -(slideWidth * (reviewList.length - 3));
+
     setOffset((prevOffset) => {
       let newOffset = direction === "right" ? prevOffset - slideWidth : prevOffset + slideWidth;
       newOffset = Math.max(newOffset, maxOffset);
