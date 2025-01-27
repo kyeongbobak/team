@@ -23,7 +23,6 @@ export default function BlogFeed() {
     const getBlogList = async () => {
       try {
         const { data } = await axios.get("/api/post");
-        console.log(data);
         setBlogList(data);
       } catch (error) {
         console.error("Failed to fetch blog posts:", error);
