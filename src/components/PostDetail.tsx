@@ -37,7 +37,10 @@ export default function PostDetail() {
       <div className="container">
         <ul>
           {postList.map((item) => (
-            <li key={item.post_id}>{item.writer}</li>
+            <li key={item.post_id}>
+              <p>{item.writer}</p>
+              <div>{item.contents_detail}</div>
+            </li>
           ))}
         </ul>
       </div>

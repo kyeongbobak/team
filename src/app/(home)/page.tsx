@@ -16,6 +16,7 @@ import animationImage from "../../assets/img/animationImage.png";
 import "../../assets/styles/home.css";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 interface reviewItem {
   id: number;
@@ -45,9 +46,8 @@ export default function Home() {
   useEffect(() => {
     const getReviewList = async () => {
       try {
-        const response = await fetch("/api/review");
-        const result = await response.json();
-        setReviewList(result);
+        const { data } = await axios.get("/api/review");
+        setReviewList(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

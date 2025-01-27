@@ -24,7 +24,7 @@ export default function TopNavBar() {
                 <StyledLink href={`/post/${1}`}>Product</StyledLink>
               </li>
               <li>
-                <StyledLink href={"/"}>Blog</StyledLink>
+                <StyledLink href={`/blog`}>Blog</StyledLink>
               </li>
               <li>
                 <StyledLink href={"/"}>Contact</StyledLink>
@@ -51,7 +51,7 @@ export default function TopNavBar() {
                 <StyledLink href={`/post/${1}`}>Product</StyledLink>
               </li>
               <li>
-                <StyledLink href={"/"}>Blog</StyledLink>
+                <StyledLink href={`/blog/`}>Blog</StyledLink>
               </li>
               <li>
                 <StyledLink href={"/"}>Contact</StyledLink>
