@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const data = await prisma.review.findMany();
+    const data = await prisma.post.findMany();
     return new Response(JSON.stringify(data), {
       status: 200,
       headers: { "Content-Type": "application/json" },

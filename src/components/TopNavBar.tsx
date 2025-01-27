@@ -9,10 +9,11 @@ import { usePathname } from "next/navigation";
 export default function TopNavBar() {
   const pathName = usePathname();
   const dynamicParam = pathName.replace(/[^a-zA-Z]/g, "");
+  console.log(dynamicParam);
 
   return (
     <>
-      {dynamicParam === "/" ? (
+      {dynamicParam === "" ? (
         <div className="absolute z-10 w-full ">
           <div className="container flex justify-between items-center mt-[40px]">
             <StyledLink href={"/"}>

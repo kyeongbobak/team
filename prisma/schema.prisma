@@ -1,18 +1,32 @@
-datasource db {
-  provider = "postgresql"  
-  url      = env("DATABASE_URL") 
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-model Reviewer {
-  id       Int    @id @default(autoincrement())
-  reviewer     String
-  content String
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model review {
+  id        Int    @id @default(autoincrement())
+  reviewer  String
+  content   String
   user_info String
-  imageUrl String
-  
-    @@map("reviewer") 
+  imageUrl  String
+
+  @@map("review")
+}
+
+model Post {
+  post_id         Int      @id @default(autoincrement())
+  thumnail        String
+  created_at      DateTime @db.Timestamp(6)
+  writer          String   @default("")
+  title           String   @default("")
+  contents        String   @default("")
+  contents_detail String   @default("")
+  profile_image   String
+  writer_info     String   @default("")
+
+  @@map("post")
 }
