@@ -6,12 +6,6 @@
   font-size: 10px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    background-color: white;
-  }
-}
-
 .container {
   @apply max-w-[1160px] mx-auto;
 }

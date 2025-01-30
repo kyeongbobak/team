@@ -8,8 +8,8 @@ import main_image2 from "../../assets/img/main_image2.png";
 import main_image3 from "../../assets/img/main_image3.png";
 import arrow_right from "../../assets/img/arrow_right.png";
 import stars from "../../assets/img/stars.png";
-import arrow_back from "../../assets/img/arrow_back.png";
-import arrow_forward from "../../assets/img/arrow_forward.png";
+import arrow_back_blue from "../../assets/img/arrow_back_blue.png";
+import arrow_forward_blue from "../../assets/img/arrow_forward_blue.png";
 import animationImageTop from "../../assets/img/animationImageTop.png";
 import animationImageBottom from "../../assets/img/animationImageBottom.png";
 import animationImage from "../../assets/img/animationImage.png";
@@ -205,10 +205,10 @@ export default function Home() {
           </ul>
           <div className="flex justify-end mb-[160px] gap-[10px]">
             <button onClick={() => handleSlide("left")}>
-              <Image src={arrow_back} alt="arrow_back" />
+              <Image src={arrow_back_blue} alt="arrow_back_blue" />
             </button>
             <button onClick={() => handleSlide("right")}>
-              <Image src={arrow_forward} alt="arrow_forward" />
+              <Image src={arrow_forward_blue} alt="arrow_forward_blue" />
             </button>
           </div>
         </div>

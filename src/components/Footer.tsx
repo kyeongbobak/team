@@ -2,8 +2,8 @@
 
 import StyledLink from "next/link";
 import Image from "next/image";
-import logo from "../../public/img/logo.png";
-import arrowForward from "../../public/img/arrow_forward.png";
+import logo from "../assets/img/logo.png";
+import arrowForward from "../assets/img/arrow_forward.png";
 import check from "../assets/img/check.png";
 import "../assets/styles/footer.css";
 import { useState } from "react";

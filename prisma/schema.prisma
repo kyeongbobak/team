@@ -27,6 +27,4 @@ model Post {
   contents_detail String   @default("")
   profile_image   String
   writer_info     String   @default("")
-
-  @@map("post")
 }
