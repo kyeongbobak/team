@@ -1,6 +1,6 @@
 import StyledLink from "next/link";
 import Image from "next/image";
-import BlogFeed from "../../components/BlogFeed";
+import BlogFeed from "../../../components/BlogFeed";
 import chevron_right from "../../../assets/img/chevron_right.png";
 
 export default async function blog() {
