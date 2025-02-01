@@ -1,0 +1,9 @@
+.custom-ul {
+  @apply flex flex-row items-center text-white text-md space-x-[40px];
+}
+
+@media (max-width: 1024px) {
+  .custom-ul {
+    @apply flex-col space-x-0 space-y-[10px];
+  }
+}

@@ -5,23 +5,23 @@ import Image from "next/image";
 import logo from "../assets/img/logo.png";
 import logo_other from "../assets/img/logo_other.png";
 import { usePathname } from "next/navigation";
+import "../assets/styles/topnavbar.css";
 
 export default function TopNavBar() {
   const pathName = usePathname();
   const dynamicParam = pathName.replace(/[^a-zA-Z]/g, "");
-  console.log(dynamicParam);
 
   return (
     <>
       {dynamicParam === "" ? (
-        <div className="absolute z-10 w-full ">
+        <div className="absolute z-10 w-full">
           <div className="container flex justify-between items-center mt-[40px]">
             <StyledLink href={"/"}>
               <Image src={logo} alt="logo" />
             </StyledLink>
-            <ul className="flex flex-row items-center text-white text-md space-x-[40px]">
+            <ul className="custom-ul">
               <li>
-                <StyledLink href={`/post/${1}`}>Product</StyledLink>
+                <StyledLink href={"/"}>Product</StyledLink>
               </li>
               <li>
                 <StyledLink href={`/blog`}>Blog</StyledLink>
@@ -30,7 +30,7 @@ export default function TopNavBar() {
                 <StyledLink href={"/"}>Contact</StyledLink>
               </li>
               <li>
-                <StyledLink href={"/"}>Log In</StyledLink>
+                <StyledLink href={"/auth/login"}>Log In</StyledLink>
               </li>
               <li>
                 <StyledLink href={"/"}>

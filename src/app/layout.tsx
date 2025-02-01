@@ -1,10 +1,10 @@
 "use client";
 
 import { Cabin } from "next/font/google";
+import { usePathname } from "next/navigation";
 import "../assets/styles/globals.css";
 import TopNavBar from "../components/TopNavBar";
 import Footer from "../components/Footer";
-import { usePathname } from "next/navigation";
 
 const cabin = Cabin({
   subsets: ["latin"],
@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="./webclip.png" />
         <title>team</title>
       </head>
-      {pathname === "/blog" ? (
+      {pathname === "auth/login" || "auth/signup" ? (
+        <body className="font-cabin bg-[#f6f7fa]">{children}</body>
+      ) : pathname === "/blog" ? (
         <body className="font-cabin bg-[#f6f7fa]">
           <TopNavBar />
           {children}

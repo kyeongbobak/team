@@ -7,14 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model review {
+model Review {
   id        Int    @id @default(autoincrement())
   reviewer  String
   content   String
   user_info String
   imageUrl  String
-
-  @@map("review")
 }
 
 model Post {
@@ -27,4 +25,10 @@ model Post {
   contents_detail String   @default("")
   profile_image   String
   writer_info     String   @default("")
+}
+
+model User {
+  id String @id @default(uuid())
+  email String @unique
+  created_at DateTime @default(now())
 }
