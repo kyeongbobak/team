@@ -15,11 +15,11 @@ export default function Login() {
           <label className="ally-hidden" htmlFor="username">
             이메일
           </label>
-          <input className="custom-input placeholder: text-md" type="text" placeholder="Email" />
+          <input className="custom-login-input placeholder: text-md" type="text" placeholder="Email" />
           <label className="ally-hidden" htmlFor="password">
             비밀번호
           </label>
-          <input className="custom-input placeholder: text-md" type="password" placeholder="Password" />
+          <input className="custom-login-input placeholder: text-md" type="password" placeholder="Password" />
           <button className="bg-blue text-sm text-white mt-[35px] px-[213px] py-[15px] rounded-[4px]">LOGIN</button>
         </form>
         <div>
