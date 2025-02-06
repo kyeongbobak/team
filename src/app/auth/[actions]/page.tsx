@@ -11,7 +11,7 @@ export default async function Auth({ params }: { params: { actions: string } }) 
     <>
       <div className="w-[550px] mx-auto mt-[200px]">
         <StyledLink href={`/`}>
-          <Image className="block w-[100px] mx-auto mb-[70px]" src={logo_other} alt="logo_other" />
+          <Image className="block w-[100px] mx-auto mb-[70px]" src={logo_other} alt="logo_other" priority />
         </StyledLink>
         {pathname.actions === "login" ? <Login /> : <SignUp />}
       </div>

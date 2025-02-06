@@ -26,7 +26,7 @@ export default function Footer() {
     <div className="bg-navy py-[60px]">
       <div className="container footer-layout">
         <div className="mr-[130px]">
-          <Image src={logo} alt="logo" />
+          <Image src={logo} alt="logo" priority />
           <p className="w-[148px] h-[40px] mt-[18px] text-base text-[#fff9]">Collaboration platform for modern teams.</p>
         </div>
         <div className="w-[856px] footer-layout">
@@ -85,7 +85,7 @@ export default function Footer() {
               {active === true ? (
                 <div className="flex justify-between items-center gap-[10px]">
                   <p className="text-orange">Subscription successfully completed</p>
-                  <Image src={check} alt="check" />
+                  <Image src={check} alt="check" priority />
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(handleOnSubmit)}>
@@ -98,7 +98,7 @@ export default function Footer() {
                     })}
                   />
                   <button>
-                    <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" />
+                    <Image className="absolute bg-opacity-30 mt-[-16px] ml-[-40px]" src={arrowForward} alt="arrow" priority />
                   </button>
                   {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
                 </form>

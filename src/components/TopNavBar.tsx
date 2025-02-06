@@ -17,7 +17,7 @@ export default function TopNavBar() {
         <div className="absolute z-10 w-full">
           <div className="container flex justify-between items-center mt-[40px]">
             <StyledLink href={"/"}>
-              <Image src={logo} alt="logo" />
+              <Image src={logo} alt="logo" priority />
             </StyledLink>
             <ul className="custom-ul">
               <li>
@@ -44,7 +44,7 @@ export default function TopNavBar() {
         <div className="z-10 w-full">
           <div className="container flex justify-between items-center mt-[40px]">
             <StyledLink href={"/"}>
-              <Image src={logo_other} alt="logo" />
+              <Image src={logo_other} alt="logo" priority />
             </StyledLink>
             <ul className="flex flex-row items-center text-blue text-md space-x-[40px]">
               <li>

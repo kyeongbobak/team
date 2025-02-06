@@ -14,7 +14,7 @@ export default async function blog() {
           <StyledLink className="text-regular text-[#69788d]" href={``}>
             Next
           </StyledLink>
-          <Image width={20} height={20} src={chevron_right} alt="chevron_right" />
+          <Image width={20} height={20} src={chevron_right} alt="chevron_right" priority />
         </div>
       </div>
     </>

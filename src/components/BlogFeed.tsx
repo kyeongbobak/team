@@ -49,7 +49,7 @@ export default function BlogFeed() {
                   <p className="pt-[12px] text-base text-gray">{item.contents}</p>
                 </div>
                 <div className="flex items-center text-[12px] text-gray gap-[10px]">
-                  <Image src={item.profile_image} width={30} height={30} alt="post_profile" />
+                  <Image src={item.profile_image} width={30} height={30} alt="post_profile" priority />
                   <p>{item.writer}</p>
                   <p>{format(new Date(item.created_at), "d MMMM yyyy")}</p>
                 </div>
