@@ -4,6 +4,7 @@ import StyledLink from "next/link";
 import "../assets/styles/login.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type LoginInfo = {
   email: string;
@@ -17,19 +18,17 @@ export default function Login() {
     formState: { errors },
   } = useForm<LoginInfo>();
 
+  const router = useRouter();
+
   const handleOnSubmit = async (data: LoginInfo) => {
     try {
       const res = await axios.post("/api/auth/login", data);
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
-        alert("로그인 성공");
-      } else {
-        alert(res.data.error || "로그인 실패");
+        router.push("/");
       }
-      console.log(res);
     } catch (error) {
       console.log(error);
-      alert("로그인 중 오류 발생");
     }
   };
 

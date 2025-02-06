@@ -1,5 +1,5 @@
 .custom-ul {
-  @apply flex flex-row items-center text-white text-md space-x-[40px];
+  @apply flex flex-row items-center text-md space-x-[40px];
 }
 
 @media (max-width: 1024px) {
