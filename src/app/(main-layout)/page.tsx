@@ -95,7 +95,7 @@ export default function Home() {
   return (
     <>
       <div className="container h-screen">
-        <Image className="relative object-cover bg-center" fill src={hero_bg} alt="hero_bg" priority />
+        <Image className="relative object-cover" fill src={hero_bg} alt="hero_bg" priority />
         <div className="absolute text-white ">
           <div className="w-[496px] mt-[240px]">
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>

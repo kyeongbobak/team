@@ -1,5 +1,6 @@
 import { Cabin } from "next/font/google";
 import "../assets/styles/globals.css";
+import Providers from "./providers";
 
 const cabin = Cabin({
   subsets: ["latin"],
@@ -13,7 +14,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="./webclip.png" />
         <title>team</title>
-        <body className="font-cabin">{children}</body>
+
+        <body className="font-cabin">
+          <Providers>{children}</Providers>
+        </body>
       </head>
     </html>
   );

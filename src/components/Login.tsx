@@ -1,10 +1,13 @@
 "use client";
 
+import axios from "axios";
 import StyledLink from "next/link";
 import "../assets/styles/login.css";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/slices/authslice";
+import { AxiosError } from "axios";
 
 type LoginInfo = {
   email: string;
@@ -20,15 +23,20 @@ export default function Login() {
 
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
   const handleOnSubmit = async (data: LoginInfo) => {
     try {
       const res = await axios.post("/api/auth/login", data);
       if (res.status === 200) {
-        localStorage.setItem("token", res.data.token);
+        dispatch(login(res.data.token));
         router.push("/");
       }
     } catch (error) {
-      console.log(error);
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 401) {
+        alert("비밀번호가 일치하지 않습니다!");
+      }
     }
   };
 
@@ -44,10 +52,10 @@ export default function Login() {
             type="text"
             placeholder="Email"
             {...register("email", {
-              required: "Please enter your email!",
+              required: "Please enter your email !",
             })}
           />
-          <p>{errors.email?.message}</p>
+          <p className="custom-errormessage">{errors.email?.message}</p>
           <label className="ally-hidden" htmlFor="password">
             비밀번호
           </label>
@@ -56,10 +64,10 @@ export default function Login() {
             type="password"
             placeholder="Password"
             {...register("password", {
-              required: "Please enter your password",
+              required: "Please enter your password !",
             })}
           />
-          <p>{errors.password?.message}</p>
+          <p className="custom-errormessage">{errors.password?.message}</p>
           <button className="bg-blue text-sm text-white mt-[35px] px-[213px] py-[15px] rounded-[4px]">LOGIN</button>
         </form>
         <div>

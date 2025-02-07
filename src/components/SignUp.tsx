@@ -1,8 +1,8 @@
 "use client";
 
 import axios from "axios";
-import "../assets/styles/signup.css";
 import { useForm } from "react-hook-form";
+import "../assets/styles/signup.css";
 
 type SignInfo = {
   email: string;
@@ -43,14 +43,14 @@ export default function SignUp() {
             <div className="flex gap-[8px]">
               <input
                 className="grow custom-signup-input placeholder: text-md"
-                type="text"
+                type="email"
                 {...register("email", {
-                  required: "Please enter your email!",
+                  required: "Please enter your email !",
                 })}
               />
             </div>
           </div>
-          <p>{errors.email?.message}</p>
+          <p className="custom-signup-errormessage">{errors.email?.message}</p>
           <div className="flex flex-col">
             <label className="py-[12px] text-md" htmlFor="">
               Password
@@ -59,11 +59,15 @@ export default function SignUp() {
               className="custom-signup-input placeholder: text-md"
               type="password"
               {...register("password", {
-                required: "Please enter your password",
+                required: "Please enter your password !",
+                validate: {
+                  hasLowCase: (value) => /[a-z]/.test(value) || "The password must contain at least one lowercase letter.",
+                  hasNumber: (value) => /[0-9]/.test(value) || "The password must contain at least one number.",
+                },
               })}
             />
           </div>
-          <p>{errors.password?.message}</p>
+          <p className="custom-signup-errormessage">{errors.password?.message}</p>
           <div className="flex flex-col">
             <label className="py-[12px] text-md" htmlFor="">
               Name
@@ -72,11 +76,11 @@ export default function SignUp() {
               className="custom-signup-input placeholder: text-md"
               type="text"
               {...register("name", {
-                required: "Please enter your name",
+                required: "Please enter your name !",
               })}
             />
           </div>
-          <p>{errors.name?.message}</p>
+          <p className="custom-signup-errormessage">{errors.name?.message}</p>
           <button className="bg-blue mt-[35px] px-[200px] py-[15px] text-sm text-white rounded-[4px]">SIGN UP</button>
         </form>
       </div>

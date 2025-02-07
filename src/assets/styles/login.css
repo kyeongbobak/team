@@ -1,3 +1,7 @@
 .custom-login-input {
   @apply border-b-[1px] border-[#c4c4c4] p-[12px] outline-none;
 }
+
+.custom-errormessage {
+  @apply text-[#ec625c] text-sm pt-[10px];
+}

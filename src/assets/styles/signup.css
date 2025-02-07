@@ -1,3 +1,7 @@
 .custom-signup-input {
   @apply rounded-[4px] border-[1px] border-[#c4c4c4] h-[57px] mb-[13px];
 }
+
+.custom-signup-errormessage {
+  @apply text-[#ec625c] text-sm;
+}
