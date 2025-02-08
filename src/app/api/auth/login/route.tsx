@@ -18,15 +18,25 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    if (!user.password) {
+      const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
 
-    if (!isMatch) {
-      return NextResponse.json(
-        { error: "Invalid password" },
-        {
-          status: 401,
-        }
-      );
+      return NextResponse.json({ message: "Login successful (email only)", token }, { status: 200 });
+    }
+
+    if (password) {
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        return NextResponse.json(
+          { error: "Invalid password" },
+          {
+            status: 401,
+          }
+        );
+      }
     }
 
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {

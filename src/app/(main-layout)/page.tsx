@@ -17,6 +17,11 @@ import "../../assets/styles/home.css";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { AxiosError } from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+import { AppDispatch } from "@/redux/store";
+import { login } from "../../redux/slices/authslice";
 
 interface reviewItem {
   id: number;
@@ -28,8 +33,10 @@ interface reviewItem {
 
 export default function Home() {
   const [reviewList, setReviewList] = useState<reviewItem[]>([]);
-  const [active, setActive] = useState<boolean>(false);
   const [offset, setOffset] = useState<number>(0);
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const animationImageTopRef = useRef<HTMLImageElement>(null);
   const animationImageBottomRef = useRef<HTMLImageElement>(null);
@@ -73,11 +80,25 @@ export default function Home() {
     if (animationImageRef.current) observer.observe(animationImageRef.current);
   }, []);
 
-  const handleOnSubmit = () => {
-    setActive(true);
-    reset({
-      email: "",
-    });
+  const handleEmailLogin = async ({ email }: { email: string }) => {
+    console.log(email);
+    try {
+      const { data } = await axios.post("/api/auth/login", { email });
+      console.log(data);
+      reset({
+        email: "",
+      });
+
+      if (data) {
+        dispatch(login(data.token));
+      }
+    } catch (error) {
+      console.log(error);
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 404) {
+        alert("This is a non-existent user!");
+      }
+    }
   };
 
   const handleSlide = (direction: "left" | "right") => {
@@ -101,7 +122,7 @@ export default function Home() {
             <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
             <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
             <div className="mt-[55px]">
-              <form onSubmit={handleSubmit(handleOnSubmit)}>
+              <form onSubmit={handleSubmit(handleEmailLogin)}>
                 <input
                   type="email"
                   className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black"
@@ -110,8 +131,10 @@ export default function Home() {
                     required: "Please enter your email !",
                   })}
                 />
-                {active === true ? (
-                  <button className="form-container button-layout bg-orange">Get Access</button>
+                {isAuthenticated ? (
+                  <button type="submit" className="form-container button-layout bg-orange">
+                    Get Access
+                  </button>
                 ) : (
                   <button type="submit" className="form-container button-layout bg-main">
                     Get Early Access

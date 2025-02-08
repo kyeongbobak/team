@@ -6,6 +6,7 @@ import "../assets/styles/login.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
 import { login } from "../redux/slices/authslice";
 import { AxiosError } from "axios";
 
@@ -23,7 +24,7 @@ export default function Login() {
 
   const router = useRouter();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleOnSubmit = async (data: LoginInfo) => {
     try {
@@ -35,7 +36,7 @@ export default function Login() {
     } catch (error) {
       const axiosError = error as AxiosError;
       if (axiosError.status === 401) {
-        alert("비밀번호가 일치하지 않습니다!");
+        alert("Password does not match!");
       }
     }
   };
