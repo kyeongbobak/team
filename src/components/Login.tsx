@@ -29,8 +29,10 @@ export default function Login() {
   const handleOnSubmit = async (data: LoginInfo) => {
     try {
       const res = await axios.post("/api/auth/login", data);
+
       if (res.status === 200) {
-        dispatch(login(res.data.token));
+        dispatch(login({ token: res.data.token, email: data.email }));
+
         router.push("/");
       }
     } catch (error) {

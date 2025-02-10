@@ -25,6 +25,8 @@ model Post {
   contents_detail String   @default("")
   profile_image   String
   writer_info     String   @default("")
+
+  comments        Comment[]
 }
 
 model User {
@@ -32,5 +34,15 @@ model User {
   email String @unique
   password String 
   created_at DateTime @default(now())
+}
+
+model Comment {
+  id String @id @default(uuid())
+  email String
+  created_at DateTime @default(now())
+  contents String
+  
+  postId Int
+  post Post @relation(fields: [postId], references: [post_id], onDelete: Cascade)
 }
 
