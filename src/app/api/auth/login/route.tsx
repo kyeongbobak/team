@@ -1,12 +1,12 @@
-import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
     const { email, password } = await req.json();
 
@@ -51,8 +51,6 @@ export async function POST(req: Request) {
     );
   } catch (error) {
     console.log("Error fetching data:", error);
-    return new Response(JSON.stringify({ error: "error fetching data" }), {
-      status: 500,
-    });
+    return NextResponse.json({ error: "Error fetching data" }, { status: 500 });
   }
 }

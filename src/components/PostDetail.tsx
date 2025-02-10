@@ -56,7 +56,7 @@ export default function PostDetail() {
   useEffect(() => {
     const getCommentList = async () => {
       try {
-        const { data } = await axios.get(`/api/post/comments/${postId}`);
+        const { data } = await axios.get(`/api/post/comments?postId=${postId}`);
         console.log(data);
         setCommentList(data);
       } catch (error) {
@@ -107,22 +107,24 @@ export default function PostDetail() {
                 </div>
               </div>
               <p className="text-2xl text-[#67758c] relative before:content-[''] before:block before:w-[700px] before:h-[1px] before:bg-[#bdc8d3] before:my-[60px]">Join the conversation</p>
-
               {commentList?.map((list) => (
-                <div key={list.id} className="flex items-center gap-[15px] mt-[31px] border-b border-[#c4c4c4] pb-[30px] ">
+                <div key={list.id} className="flex items-center gap-[15px] mt-[31px] border-b border-[#c4c4c4] pb-[30px]">
                   <div>
                     <Image src={profile_blank} alt="profile_blank" priority />
                   </div>
-                  <div className="text-[12px]">
+                  <div className="text-[12px] flex-1">
                     <div className="flex items-center gap-[10px] mb-[5px]">
                       <p className="text-bold pb-[5px]">{list.email.split("@")[0]}</p>
                       <p>{list.created_at.split("T")[0]}</p>
                     </div>
-                    <div>{list.contents}</div>
+                    <div className="ml-[auto]">{list.contents}</div>
+                    <div className="flex justify-end">
+                      <button>modify</button>
+                      <button className="relative before:content-['|'] before:mx-[15px]">delete</button>
+                    </div>
                   </div>
                 </div>
               ))}
-
               <div className="flex gap-[15px] mt-[60px]">
                 <div>
                   <Image src={profile_blank} alt="profile_blank" priority />
@@ -131,7 +133,6 @@ export default function PostDetail() {
               </div>
               <div className="flex justify-end text-[#67758c] text-sm mt-[30px] mb-[120px]">
                 <button onClick={() => handleSubmitComment()}>Submit a comment</button>
-                {/* <button className="relative before:content-['|'] before:mx-[15px]">delete</button> */}
               </div>
             </div>
           </div>
