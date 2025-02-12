@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!user.password) {
-      const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+      const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
         expiresIn: "1h",
       });
 
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+    const token = jwt.sign({ userId: user.id, email: user.email }, JWT_SECRET, {
       expiresIn: "1h",
     });
 

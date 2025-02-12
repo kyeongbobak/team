@@ -9,6 +9,7 @@ import Image from "next/image";
 import profile_blank from "../assets/img/profile_blank.png";
 import "../assets/styles/postdetail.css";
 import { RootState } from "../redux/store";
+import useCommentsList from "../hook/useGetCommentsList";
 
 interface postItem {
   post_id: number;
@@ -22,23 +23,16 @@ interface postItem {
   writer_info: string;
 }
 
-interface Comment {
-  id: string;
-  email: string;
-  created_at: string;
-  contents: string;
-  postId: number;
-}
-
 export default function PostDetail() {
   const [postListItem, setPostListItem] = useState<postItem | null>(null);
   const [comment, setComment] = useState<string>();
   const pathname = usePathname();
-  const [commentList, setCommentList] = useState<Comment[]>();
 
   const postId = Number(pathname.replace(/\D/g, ""));
 
-  const { email } = useSelector((state: RootState) => state.auth);
+  const { commentList, getCommentList } = useCommentsList(postId);
+
+  const { email, token } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const getPostList = async () => {
@@ -53,20 +47,6 @@ export default function PostDetail() {
     getPostList();
   }, [postId]);
 
-  useEffect(() => {
-    const getCommentList = async () => {
-      try {
-        const { data } = await axios.get(`/api/post/comments?postId=${postId}`);
-        console.log(data);
-        setCommentList(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getCommentList();
-  }, [postId]);
-
   const handleSubmitComment = async () => {
     try {
       const res = await axios.post(`/api/post/comments`, {
@@ -74,6 +54,26 @@ export default function PostDetail() {
         email,
         contents: comment,
       });
+      console.log(res);
+      setComment("");
+      getCommentList();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteComment = async (index: number) => {
+    if (!commentList) return;
+
+    const commentId = commentList[index].id;
+
+    try {
+      const res = await axios.delete(`/api/post/comments/${commentId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      getCommentList();
+
       console.log(res);
     } catch (error) {
       console.log(error);
@@ -107,7 +107,7 @@ export default function PostDetail() {
                 </div>
               </div>
               <p className="text-2xl text-[#67758c] relative before:content-[''] before:block before:w-[700px] before:h-[1px] before:bg-[#bdc8d3] before:my-[60px]">Join the conversation</p>
-              {commentList?.map((list) => (
+              {commentList?.map((list, index) => (
                 <div key={list.id} className="flex items-center gap-[15px] mt-[31px] border-b border-[#c4c4c4] pb-[30px]">
                   <div>
                     <Image src={profile_blank} alt="profile_blank" priority />
@@ -119,8 +119,10 @@ export default function PostDetail() {
                     </div>
                     <div className="ml-[auto]">{list.contents}</div>
                     <div className="flex justify-end">
-                      <button>modify</button>
-                      <button className="relative before:content-['|'] before:mx-[15px]">delete</button>
+                      <button onClick={() => modifyComment(index)}>modify</button>
+                      <button onClick={() => deleteComment(index)} className="relative before:content-['|'] before:mx-[15px]">
+                        delete
+                      </button>
                     </div>
                   </div>
                 </div>
