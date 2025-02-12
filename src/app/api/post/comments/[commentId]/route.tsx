@@ -52,13 +52,28 @@ export async function DELETE(req: NextRequest, { params }: { params: { commentId
 }
 
 // 댓글 수정
-export async function PUT(req: NextRequest) {
+export async function PUT(req: NextRequest, { params }: { params: { commentId: string } }) {
+  const { commentId } = params;
+
+  const authHeader = req.headers.get("Authorization");
+
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    return NextResponse.json({ message: "Unauthorized : No token provided" }, { status: 401 });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  let decoded;
   try {
-    const { searchParams } = new URL(req.url);
-    const commentId = searchParams.get("commentId") as string;
+    decoded = jwt.verify(token, SECRET_KEY) as { email: string };
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Unauthorized: Invalid token" }, { status: 401 });
+  }
 
-    console.log(commentId, "commentId에요!!");
+  const userEmail = decoded.email;
 
+  try {
     const { contents, email } = await req.json();
 
     if (!contents || !email) {
@@ -73,8 +88,8 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ message: "Comment not found" }, { status: 404 });
     }
 
-    if (existingComment.email !== email) {
-      return NextResponse.json({ message: "Unauthorized" }, { status: 403 });
+    if (existingComment.email !== userEmail) {
+      return NextResponse.json({ message: "Unautorized : you can only delete your own Comment" }, { status: 403 });
     }
 
     const updatedComment = await prisma.comment.update({

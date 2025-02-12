@@ -26,6 +26,8 @@ interface postItem {
 export default function PostDetail() {
   const [postListItem, setPostListItem] = useState<postItem | null>(null);
   const [comment, setComment] = useState<string>();
+  const [editComment, setEditComment] = useState<boolean[]>([]);
+  const [editContents, setEditContents] = useState<string>("");
   const pathname = usePathname();
 
   const postId = Number(pathname.replace(/\D/g, ""));
@@ -33,6 +35,8 @@ export default function PostDetail() {
   const { commentList, getCommentList } = useCommentsList(postId);
 
   const { email, token } = useSelector((state: RootState) => state.auth);
+
+  const username = email ? email.split("@")[0] : "";
 
   useEffect(() => {
     const getPostList = async () => {
@@ -57,6 +61,8 @@ export default function PostDetail() {
       console.log(res);
       setComment("");
       getCommentList();
+
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +81,40 @@ export default function PostDetail() {
       getCommentList();
 
       console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleModifyClick = (email: string, index: number) => {
+    if (username === email.split("@")[0]) {
+      const newEditComments = [...editComment];
+      console.log(newEditComments);
+      newEditComments[index] = !newEditComments[index];
+      console.log(newEditComments);
+      setEditComment(newEditComments);
+    }
+  };
+
+  const modifyComment = async (index: number, editContents: string) => {
+    const commentId = commentList[index].id;
+
+    console.log(editContents);
+
+    try {
+      const res = await axios.put(
+        `/api/post/comments/${commentId}`,
+        { contents: editContents, email },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(res);
+      getCommentList();
+
+      const newEditUpdatedComments = [...editComment];
+      newEditUpdatedComments[index] = false;
+      setEditComment(newEditUpdatedComments);
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +148,7 @@ export default function PostDetail() {
               </div>
               <p className="text-2xl text-[#67758c] relative before:content-[''] before:block before:w-[700px] before:h-[1px] before:bg-[#bdc8d3] before:my-[60px]">Join the conversation</p>
               {commentList?.map((list, index) => (
-                <div key={list.id} className="flex items-center gap-[15px] mt-[31px] border-b border-[#c4c4c4] pb-[30px]">
+                <div key={list.id} className="flex items-center gap-[15px] mt-[31px] border-b border-[#c4c4c4] pb-[15px] pr-[5px]">
                   <div>
                     <Image src={profile_blank} alt="profile_blank" priority />
                   </div>
@@ -117,21 +157,44 @@ export default function PostDetail() {
                       <p className="text-bold pb-[5px]">{list.email.split("@")[0]}</p>
                       <p>{list.created_at.split("T")[0]}</p>
                     </div>
-                    <div className="ml-[auto]">{list.contents}</div>
-                    <div className="flex justify-end">
-                      <button onClick={() => modifyComment(index)}>modify</button>
-                      <button onClick={() => deleteComment(index)} className="relative before:content-['|'] before:mx-[15px]">
-                        delete
-                      </button>
-                    </div>
+                    {editComment[index] ? (
+                      <textarea value={editContents || ""} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                    ) : (
+                      <div className="ml-[auto]">{list.contents}</div>
+                    )}
+                    {list.email === email ? (
+                      <div className="flex justify-end pt-[15px]">
+                        {editComment[index] ? (
+                          <div>
+                            <button onClick={() => modifyComment(index, editContents)}>save</button>
+                            <button onClick={() => setEditComment(Array(commentList.length).fill(false))} className="relative before:content-['|'] before:mx-[15px]">
+                              cancel
+                            </button>
+                          </div>
+                        ) : (
+                          <div>
+                            <button onClick={() => handleModifyClick(list.email, index)}>modify</button>
+                            <button onClick={() => deleteComment(index)} className="relative before:content-['|'] before:mx-[15px]">
+                              delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               ))}
-              <div className="flex gap-[15px] mt-[60px]">
+              <div className="flex gap-[15px] mt-[40px]">
                 <div>
                   <Image src={profile_blank} alt="profile_blank" priority />
                 </div>
-                <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                {email === null ? (
+                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Please log in to post a comment" />
+                ) : (
+                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                )}
               </div>
               <div className="flex justify-end text-[#67758c] text-sm mt-[30px] mb-[120px]">
                 <button onClick={() => handleSubmitComment()}>Submit a comment</button>

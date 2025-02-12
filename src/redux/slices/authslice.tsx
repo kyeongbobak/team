@@ -4,12 +4,14 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   email: string | null;
+  id: string | null;
 }
 
 const initialState: AuthState = {
   token: null,
   isAuthenticated: false,
   email: null,
+  id: null,
 };
 
 const authSlice = createSlice({
@@ -24,6 +26,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.isAuthenticated = false;
+      state.id = null;
+      state.email = null;
     },
   },
 });
