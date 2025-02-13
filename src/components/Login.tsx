@@ -26,7 +26,7 @@ export default function Login() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleOnSubmit = async (data: LoginInfo) => {
+  const handleOnSubmit = async (data: LoginInfo): Promise<void> => {
     try {
       const res = await axios.post("/api/auth/login", data);
 

@@ -22,7 +22,7 @@ export default function BlogFeed() {
   const [blogList, setBlogList] = useState<blogListItem[]>([]);
 
   useEffect(() => {
-    const getBlogList = async () => {
+    const getBlogList = async (): Promise<void> => {
       try {
         const { data } = await axios.get(`/api/post`);
         setBlogList(data);

@@ -39,7 +39,7 @@ export default function PostDetail() {
   const username = email ? email.split("@")[0] : "";
 
   useEffect(() => {
-    const getPostList = async () => {
+    const getPostList = async (): Promise<void> => {
       try {
         const { data } = await axios.get(`/api/postdetail/${postId}`);
         setPostListItem(data);
@@ -51,65 +51,56 @@ export default function PostDetail() {
     getPostList();
   }, [postId]);
 
-  const handleSubmitComment = async () => {
+  const handleSubmitComment = async (): Promise<void> => {
     try {
-      const res = await axios.post(`/api/post/comments`, {
+      await axios.post(`/api/post/comments`, {
         postId,
         email,
         contents: comment,
       });
-      console.log(res);
       setComment("");
       getCommentList();
-
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteComment = async (index: number) => {
+  const deleteComment = async (index: number): Promise<void> => {
     if (!commentList) return;
 
     const commentId = commentList[index].id;
 
     try {
-      const res = await axios.delete(`/api/post/comments/${commentId}`, {
+      await axios.delete(`/api/post/comments/${commentId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
       getCommentList();
-
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleModifyClick = (email: string, index: number) => {
+  const handleModifyClick = (email: string, index: number): void => {
     if (username === email.split("@")[0]) {
       const newEditComments = [...editComment];
-      console.log(newEditComments);
       newEditComments[index] = !newEditComments[index];
-      console.log(newEditComments);
       setEditComment(newEditComments);
     }
   };
 
-  const modifyComment = async (index: number, editContents: string) => {
+  const modifyComment = async (index: number, editContents: string): Promise<void> => {
     const commentId = commentList[index].id;
 
-    console.log(editContents);
-
     try {
-      const res = await axios.put(
+      await axios.put(
         `/api/post/comments/${commentId}`,
         { contents: editContents, email },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(res);
+
       getCommentList();
 
       const newEditUpdatedComments = [...editComment];

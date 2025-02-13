@@ -12,7 +12,7 @@ interface Comment {
 function useCommentsList(postId: number) {
   const [commentList, setCommentList] = useState<Comment[]>([]);
 
-  const getCommentList = useCallback(async () => {
+  const getCommentList = useCallback(async (): Promise<void> => {
     try {
       const { data } = await axios.get(`/api/post/comments?postId=${postId}`);
       setCommentList(data);

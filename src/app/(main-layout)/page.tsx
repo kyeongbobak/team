@@ -51,7 +51,7 @@ export default function Home() {
   } = useForm<{ email: string }>();
 
   useEffect(() => {
-    const getReviewList = async () => {
+    const getReviewList = async (): Promise<void> => {
       try {
         const { data } = await axios.get("/api/review");
         setReviewList(data);
@@ -80,11 +80,9 @@ export default function Home() {
     if (animationImageRef.current) observer.observe(animationImageRef.current);
   }, []);
 
-  const handleEmailLogin = async ({ email }: { email: string }) => {
-    console.log(email);
+  const handleEmailLogin = async ({ email }: { email: string }): Promise<void> => {
     try {
       const { data } = await axios.post("/api/auth/login", { email });
-      console.log(data);
       reset({
         email: "",
       });

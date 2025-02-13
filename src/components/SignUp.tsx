@@ -17,10 +17,9 @@ export default function SignUp() {
     formState: { errors },
   } = useForm<SignInfo>();
 
-  const handleOnSubmit = async (data: SignInfo) => {
+  const handleOnSubmit = async (data: SignInfo): Promise<void> => {
     try {
       const res = await axios.post("/api/auth/signup", data);
-      console.log(res);
       if (res.status === 200) {
         alert("회원가입 성공");
       } else {
