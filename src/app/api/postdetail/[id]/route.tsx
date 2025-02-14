@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
   try {
     const postId = Number(params.id);
-    console.log(postId, "POSTID에요!!!!");
     const selectedPost = await prisma.post.findUnique({
       where: { post_id: postId },
     });

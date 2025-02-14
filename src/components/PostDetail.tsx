@@ -151,7 +151,7 @@ export default function PostDetail() {
                     {editComment[index] ? (
                       <textarea value={editContents || ""} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
                     ) : (
-                      <div className="ml-[auto]">{list.contents}</div>
+                      <div>{list.contents}</div>
                     )}
                     {list.email === email ? (
                       <div className="flex justify-end pt-[15px]">
@@ -188,7 +188,7 @@ export default function PostDetail() {
                 )}
               </div>
               <div className="flex justify-end text-[#67758c] text-sm mt-[30px] mb-[120px]">
-                <button onClick={() => handleSubmitComment()}>Submit a comment</button>
+                <button onClick={handleSubmitComment}>Submit a comment</button>
               </div>
             </div>
           </div>

@@ -1,39 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken";
+import { verifyToken } from "../../../../../utils/server/verifyToken";
+import { getCommentById } from "../../../../../utils/server/commentAccess";
 
 const prisma = new PrismaClient();
-const SECRET_KEY = process.env.JWT_SECRET!;
 
 // 댓글 삭제
 export async function DELETE(req: NextRequest, { params }: { params: { commentId: string } }) {
   try {
     const { commentId } = params;
 
-    const authHeader = req.headers.get("Authorization");
+    const tokenVerification = verifyToken(req);
 
-    if (!authHeader || !authHeader.startsWith("Bearer")) {
-      return NextResponse.json({ message: "Unauthorized : No token provided" }, { status: 401 });
+    if (tokenVerification.error) {
+      return NextResponse.json({ message: tokenVerification.error }, { status: 401 });
     }
 
-    const token = authHeader.split(" ")[1];
+    const userEmail = tokenVerification.email;
 
-    let decoded;
-    try {
-      decoded = jwt.verify(token, SECRET_KEY) as { email: string };
-    } catch (error) {
-      console.log(error);
-      return NextResponse.json({ message: "Unauthorized: Invalid token" }, { status: 401 });
-    }
+    const existingComment = await getCommentById(commentId);
 
-    const userEmail = decoded.email;
-
-    const existingComment = await prisma.comment.findUnique({
-      where: { id: commentId },
-    });
-
-    if (!existingComment) {
-      return NextResponse.json({ message: "Comment not found" }, { status: 404 });
+    if ("error" in existingComment) {
+      return NextResponse.json({ message: existingComment.error }, { status: 404 });
     }
 
     if (existingComment.email !== userEmail) {
@@ -55,23 +43,13 @@ export async function DELETE(req: NextRequest, { params }: { params: { commentId
 export async function PUT(req: NextRequest, { params }: { params: { commentId: string } }) {
   const { commentId } = params;
 
-  const authHeader = req.headers.get("Authorization");
+  const tokenVerification = verifyToken(req);
 
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return NextResponse.json({ message: "Unauthorized : No token provided" }, { status: 401 });
+  if (tokenVerification.error) {
+    return NextResponse.json({ message: tokenVerification.error }, { status: 401 });
   }
 
-  const token = authHeader.split(" ")[1];
-
-  let decoded;
-  try {
-    decoded = jwt.verify(token, SECRET_KEY) as { email: string };
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({ message: "Unauthorized: Invalid token" }, { status: 401 });
-  }
-
-  const userEmail = decoded.email;
+  const userEmail = tokenVerification.email;
 
   try {
     const { contents, email } = await req.json();
@@ -80,12 +58,10 @@ export async function PUT(req: NextRequest, { params }: { params: { commentId: s
       return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 
-    const existingComment = await prisma.comment.findUnique({
-      where: { id: commentId },
-    });
+    const existingComment = await getCommentById(commentId);
 
-    if (!existingComment) {
-      return NextResponse.json({ message: "Comment not found" }, { status: 404 });
+    if ("error" in existingComment) {
+      return NextResponse.json({ message: existingComment.error }, { status: 404 });
     }
 
     if (existingComment.email !== userEmail) {
