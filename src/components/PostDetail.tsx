@@ -87,9 +87,13 @@ export default function PostDetail() {
       newEditComments[index] = !newEditComments[index];
       setEditComment(newEditComments);
     }
+
+    if (!editContents) {
+      setEditContents(commentList[index].contents);
+    }
   };
 
-  const modifyComment = async (index: number, editContents: string): Promise<void> => {
+  const modifyComment = async (index: number): Promise<void> => {
     const commentId = commentList[index].id;
 
     try {
@@ -149,7 +153,7 @@ export default function PostDetail() {
                       <p>{list.created_at.split("T")[0]}</p>
                     </div>
                     {editComment[index] ? (
-                      <textarea value={editContents || ""} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                      <textarea value={editContents} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
                     ) : (
                       <div>{list.contents}</div>
                     )}
@@ -157,7 +161,7 @@ export default function PostDetail() {
                       <div className="flex justify-end pt-[15px]">
                         {editComment[index] ? (
                           <div>
-                            <button onClick={() => modifyComment(index, editContents)}>save</button>
+                            <button onClick={() => modifyComment(index)}>save</button>
                             <button onClick={() => setEditComment(Array(commentList.length).fill(false))} className="relative before:content-['|'] before:mx-[15px]">
                               cancel
                             </button>
