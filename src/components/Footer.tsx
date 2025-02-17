@@ -25,7 +25,7 @@ export default function Footer() {
   return (
     <div className="bg-navy py-[60px]">
       <div className="container footer-layout">
-        <div className="mr-[130px]">
+        <div className="footer-logo-block">
           <Image src={logo} alt="logo" priority />
           <p className="w-[148px] h-[40px] mt-[18px] text-base text-[#fff9]">Collaboration platform for modern teams.</p>
         </div>

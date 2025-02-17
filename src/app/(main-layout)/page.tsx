@@ -114,36 +114,35 @@ export default function Home() {
   return (
     <>
       <div className="container h-screen">
-        <Image className="relative object-cover" fill src={hero_bg} alt="hero_bg" priority />
-        <div className="absolute text-white ">
-          <div className="w-[496px] mt-[240px]">
-            <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
-            <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
-            <div className="mt-[55px]">
-              <form onSubmit={handleSubmit(handleEmailLogin)}>
-                <input
-                  type="email"
-                  className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black"
-                  placeholder="Your Email"
-                  {...register("email", {
-                    required: "Please enter your email !",
-                  })}
-                />
-                {isAuthenticated ? (
-                  <button type="submit" className="form-container button-layout bg-orange">
-                    Get Access
-                  </button>
-                ) : (
-                  <button type="submit" className="form-container button-layout bg-main">
-                    Get Early Access
-                  </button>
-                )}
-              </form>
-            </div>
-            {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
+        <Image className="main-image relative object-cover" fill src={hero_bg} alt="hero_bg" priority />
+        <div className="absolute mt-[240px] w-[496px] text-white">
+          <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
+          <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
+          <div className="mt-[55px]">
+            <form onSubmit={handleSubmit(handleEmailLogin)}>
+              <input
+                type="email"
+                className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black"
+                placeholder="Your Email"
+                {...register("email", {
+                  required: "Please enter your email !",
+                })}
+              />
+              {isAuthenticated ? (
+                <button type="submit" className="form-container button-layout bg-orange">
+                  Get Access
+                </button>
+              ) : (
+                <button type="submit" className="form-container button-layout bg-main">
+                  Get Early Access
+                </button>
+              )}
+            </form>
           </div>
+          {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
         </div>
       </div>
+
       <section className="overflow-x-hidden my-[80px]">
         <div className="container">
           <div className="flex justify-between items-center">
@@ -161,20 +160,21 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <div className="container my-[80px]">
         <section className="section-layout">
-          <div className="relative">
-            <Image ref={animationImageTopRef} className="absolute w-[227px] mt-[43px] ml-[243px] fade-in-out-fast" src={animationImageTop} alt="animationImageTop" priority />
-            <Image ref={animationImageBottomRef} className="absolute w-[227px] mt-[191px] ml-[243px] fade-in-out-slow" src={animationImageBottom} alt="animationImageBottom" priority />
-            <Image className=" section-main-image" src={main_image2} alt="main_image2" priority />
+          <div className="relative flex mr-[30px]">
+            <Image className="section-main-image" src={main_image2} alt="main_image2" priority />
+            <div className="absolute animation-image z-10">
+              <Image ref={animationImageTopRef} className="mt-[43px] fade-in-out-fast" src={animationImageTop} alt="animationImageTop" priority />
+              <Image ref={animationImageBottomRef} className="animation-image-bottom mt-[11px] fade-in-out-slow" src={animationImageBottom} alt="animationImageBottom" priority />
+            </div>
           </div>
           <div>
-            <div>
-              <p className="section-title">Simple task management</p>
-              <p className="section-description-layout">
-                Tast management with Team App is simple as it gets. No complicated layout and need for user training. Tour team members will intuitively know how to navigate the plateform. It’s so simple a baby could do it!
-              </p>
-            </div>
+            <p className="section-title">Simple task management</p>
+            <p className="section-description-layout">
+              Tast management with Team App is simple as it gets. No complicated layout and need for user training. Tour team members will intuitively know how to navigate the plateform. It’s so simple a baby could do it!
+            </p>
             <div className="section-link-layout">
               <StyledLink className="section-link" href={"/"}>
                 Lean More
@@ -200,9 +200,11 @@ export default function Home() {
               <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" priority />
             </div>
           </div>
-          <div className="relative">
-            <Image ref={animationImageRef} className="absolute mt-[50px] ml-[50px] fade-in-out-fast" width="225" src={animationImage} alt="animationImage" priority />
+          <div className="relative flex">
             <Image className="section-main-image" src={main_image3} alt="main_image3" priority />
+            <div className="absolute animation-image-next">
+              <Image ref={animationImageRef} className="fade-in-out-fast" width="225" src={animationImage} alt="animationImage" priority />
+            </div>
           </div>
         </section>
       </div>

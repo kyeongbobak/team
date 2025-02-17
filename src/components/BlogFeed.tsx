@@ -40,15 +40,17 @@ export default function BlogFeed() {
         {blogList.map((item) => (
           <li key={item.post_id} className="w-[367px] h-[452px] bg-[#ffffff] rounded-[8px]">
             <div>
-              <Image className="rounded-t-[8px]" src={item.thumnail} width={367} height={192} alt="thumnail" priority />
-              <div className="p-[20px]">
-                <div className="mb-[55px]">
-                  <StyledLink className="font-semibold text-blue text-xl" href={`/post/${item.post_id}`}>
+              <div className="h-[192px]">
+                <Image className="rounded-t-[8px]" src={item.thumnail} width={367} height={192} alt="thumnail" priority />
+              </div>
+              <div className="flex flex-col p-[20px] h-[260px]">
+                <div>
+                  <StyledLink className="block h-[54px] font-semibold text-blue text-xl" href={`/post/${item.post_id}`}>
                     {item.title}
                   </StyledLink>
-                  <p className="pt-[12px] text-base text-gray">{item.contents}</p>
+                  <p className="text-base text-gray mt-[12px]">{item.contents}</p>
                 </div>
-                <div className="flex items-center text-[12px] text-gray gap-[10px]">
+                <div className="flex items-center text-[12px] text-gray gap-[10px] mt-[auto]">
                   <Image src={item.profile_image} width={30} height={30} alt="post_profile" priority />
                   <p>{item.writer}</p>
                   <p>{format(new Date(item.created_at), "d MMMM yyyy")}</p>

@@ -36,8 +36,6 @@ export default function PostDetail() {
 
   const { email, token } = useSelector((state: RootState) => state.auth);
 
-  const username = email ? email.split("@")[0] : "";
-
   useEffect(() => {
     const getPostList = async (): Promise<void> => {
       try {
@@ -81,12 +79,10 @@ export default function PostDetail() {
     }
   };
 
-  const handleModifyClick = (email: string, index: number): void => {
-    if (username === email.split("@")[0]) {
-      const newEditComments = [...editComment];
-      newEditComments[index] = !newEditComments[index];
-      setEditComment(newEditComments);
-    }
+  const handleModifyClick = (index: number): void => {
+    const newEditComments = [...editComment];
+    newEditComments[index] = !newEditComments[index];
+    setEditComment(newEditComments);
 
     if (!editContents) {
       setEditContents(commentList[index].contents);
@@ -121,7 +117,7 @@ export default function PostDetail() {
         <>
           <div className="w-[900px] mx-auto mt-[190px]">
             <div className="post_container">
-              <div className="text-blue text-3xl">10 Secret tips for managing a remote team</div>
+              <div className="text-blue text-3xl">{postListItem.title}</div>
               <div className="flex items-center gap-0 mt-[16px] text-base text-gray">
                 <Image className="mr-[15px]" width={40} height={40} src={postListItem.profile_image} alt="profile_image" priority />
                 <p>{postListItem.writer}</p>
@@ -148,17 +144,17 @@ export default function PostDetail() {
                     <Image src={profile_blank} alt="profile_blank" priority />
                   </div>
                   <div className="text-[12px] flex-1">
-                    <div className="flex items-center gap-[10px] mb-[5px]">
+                    <div className="flex items-center gap-[10px] mb-[5px] text-sm">
                       <p className="text-bold pb-[5px]">{list.email.split("@")[0]}</p>
                       <p>{list.created_at.split("T")[0]}</p>
                     </div>
                     {editComment[index] ? (
-                      <textarea value={editContents} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                      <textarea value={editContents} onChange={(e) => setEditContents(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md text-sm placeholder:text-sm" placeholder="Comments" />
                     ) : (
-                      <div>{list.contents}</div>
+                      <div className="text-sm">{list.contents}</div>
                     )}
                     {list.email === email ? (
-                      <div className="flex justify-end pt-[15px]">
+                      <div className="flex justify-end pt-[15px] text-sm">
                         {editComment[index] ? (
                           <div>
                             <button onClick={() => modifyComment(index)}>save</button>
@@ -168,7 +164,7 @@ export default function PostDetail() {
                           </div>
                         ) : (
                           <div>
-                            <button onClick={() => handleModifyClick(list.email, index)}>modify</button>
+                            <button onClick={() => handleModifyClick(index)}>modify</button>
                             <button onClick={() => deleteComment(index)} className="relative before:content-['|'] before:mx-[15px]">
                               delete
                             </button>
@@ -176,7 +172,7 @@ export default function PostDetail() {
                         )}
                       </div>
                     ) : (
-                      <></>
+                      <div className="pb-[15px]"></div>
                     )}
                   </div>
                 </div>
@@ -186,9 +182,9 @@ export default function PostDetail() {
                   <Image src={profile_blank} alt="profile_blank" priority />
                 </div>
                 {email === null ? (
-                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Please log in to post a comment" />
+                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md text-sm placeholder:text-md" placeholder="Please log in to post a comment" />
                 ) : (
-                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md placeholder:text-md" name="" id="" placeholder="Comments" />
+                  <textarea value={comment} onChange={(e) => setComment(e.target.value)} className="w-[629px] h-[139px] border border-[#bdc8d3] p-[16px] rounded-md text-sm placeholder:text-md" placeholder="Comments" />
                 )}
               </div>
               <div className="flex justify-end text-[#67758c] text-sm mt-[30px] mb-[120px]">

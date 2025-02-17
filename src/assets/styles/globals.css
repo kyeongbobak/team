@@ -10,6 +10,24 @@
   @apply max-w-[1160px] mx-auto;
 }
 
+@media (min-width: 991px) {
+  .container {
+    @apply px-[60px];
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    @apply px-[60px];
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    @apply px-[30px];
+  }
+}
+
 .ally-hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
