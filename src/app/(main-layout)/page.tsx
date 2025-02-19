@@ -118,22 +118,22 @@ export default function Home() {
         <div className="headline-wrapper">
           <p className="headline">Instant collaboration for remote teams</p>
           <p className="sub-headline">All-in-one place for your remote team to chat collaborate and track project progress</p>
-          <div className="mt-[55px]">
+          <div className="form-wrapper">
             <form onSubmit={handleSubmit(handleEmailLogin)}>
               <input
                 type="email"
-                className="form-container w-[296px] pl-[16px] text-sm placeholder: text-black"
-                placeholder="Your Email"
+                className="form-container placeholder: text-black"
+                placeholder="Email"
                 {...register("email", {
                   required: "Please enter your email !",
                 })}
               />
               {isAuthenticated ? (
-                <button type="submit" className="form-container button-layout bg-orange">
+                <button type="submit" className="button-layout bg-orange">
                   Get Access
                 </button>
               ) : (
-                <button type="submit" className="form-container button-layout bg-main">
+                <button type="submit" className="button-layout bg-main">
                   Get Early Access
                 </button>
               )}

@@ -11,3 +11,7 @@
 .slideOut {
   max-height: 0px;
 }
+
+.buttonSlide {
+  transition: 1s;
+}

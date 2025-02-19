@@ -38,7 +38,7 @@ export default function TopNavBar() {
           <div className="container">
             <div className="navbar-wrapper">
               <StyledLink href={"/"}>{pathName === "/" ? <Image src={logo} alt="logo" priority /> : <Image src={logo_other} alt="logo_other" priority />}</StyledLink>
-              <button className={`p-[7px] rounded-t-[8px] ${isClicked ? "bg-[#3f4760]" : ""}`} onClick={() => setIsClicked(!isClicked)}>
+              <button className={`${styles.buttonSlide} p-[7px] rounded-t-[8px] ${isClicked ? "bg-[#3f4760]" : ""}`} onClick={() => setIsClicked(!isClicked)}>
                 <Image src={menu_icon} width={30} height={30} alt="menu_icon" />
               </button>
             </div>

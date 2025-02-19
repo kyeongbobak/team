@@ -14,12 +14,16 @@
   @apply text-[20px] leading-[30px];
 }
 
+.form-wrapper {
+  @apply mt-[55px];
+}
+
 .form-container {
-  @apply h-[56px] rounded-[4px];
+  @apply h-[56px] rounded-[4px] w-[296px] pl-[16px] text-sm;
 }
 
 .button-layout {
-  @apply w-[165px] ml-[10px] text-md text-center font-bold;
+  @apply w-[165px] h-[56px] rounded-[4px] ml-[10px] text-md text-center font-bold;
 }
 
 .section-layout {
@@ -245,5 +249,22 @@
 @media (max-width: 479px) {
   .section-layout-second {
     @apply py-[80px];
+  }
+
+  .form-wrapper {
+    @apply mt-[50px];
+  }
+
+  .form-container,
+  .button-layout {
+    @apply w-[419px];
+  }
+
+  .form-container {
+    @apply rounded-[4px] text-sm;
+  }
+
+  .button-layout {
+    @apply rounded-[4px] ml-[0px] mt-[9px] text-md text-center font-bold;
   }
 }
