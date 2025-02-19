@@ -1,0 +1,13 @@
+.navbarSlideWrapper {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.slideIn {
+  max-height: 500px;
+}
+
+.slideOut {
+  max-height: 0px;
+}

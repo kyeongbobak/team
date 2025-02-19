@@ -114,10 +114,10 @@ export default function Home() {
   return (
     <>
       <div className="container h-screen">
-        <Image className="main-image relative object-cover" fill src={hero_bg} alt="hero_bg" priority />
-        <div className="absolute mt-[240px] w-[496px] text-white">
-          <p className="mb-[10px] text-3xl leading-[67px]">Instant collaboration for remote teams</p>
-          <p className="text-[20px] leading-[30px]">All-in-one place for your remote team to chat collaborate and track project progress</p>
+        <Image className="main-image" fill src={hero_bg} alt="hero_bg" priority />
+        <div className="headline-wrapper">
+          <p className="headline">Instant collaboration for remote teams</p>
+          <p className="sub-headline">All-in-one place for your remote team to chat collaborate and track project progress</p>
           <div className="mt-[55px]">
             <form onSubmit={handleSubmit(handleEmailLogin)}>
               <input
@@ -142,7 +142,6 @@ export default function Home() {
           {errors.email && <p className="pt-[10px] pl-[5px] text-[12px] text-white">{errors.email.message}</p>}
         </div>
       </div>
-
       <section className="overflow-x-hidden my-[80px]">
         <div className="container">
           <div className="flex justify-between items-center">
@@ -156,13 +155,12 @@ export default function Home() {
                 <Image className="section-link-icon icon-hover-move" src={arrow_right} alt="arrow_right" priority />
               </div>
             </div>
-            <Image src={mockup} alt="mockup" />
+            <Image className="section-main-image-first" src={mockup} alt="mockup" />
           </div>
         </div>
       </section>
-
       <div className="container my-[80px]">
-        <section className="section-layout">
+        <section className="section-layout-second">
           <div className="relative flex mr-[30px]">
             <Image className="section-main-image" src={main_image2} alt="main_image2" priority />
             <div className="absolute animation-image z-10">
@@ -170,7 +168,7 @@ export default function Home() {
               <Image ref={animationImageBottomRef} className="animation-image-bottom mt-[11px] fade-in-out-slow" src={animationImageBottom} alt="animationImageBottom" priority />
             </div>
           </div>
-          <div>
+          <div className="section-item">
             <p className="section-title">Simple task management</p>
             <p className="section-description-layout">
               Tast management with Team App is simple as it gets. No complicated layout and need for user training. Tour team members will intuitively know how to navigate the plateform. It’s so simple a baby could do it!
@@ -183,8 +181,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="section-layout my-[80px]">
-          <div className="last-section-description-layout mr-[68px]">
+        <section className="section-layout-second my-[80px]">
+          <div className="last-section-description-layout">
             <div>
               <p className="section-title">Scheduling that actually works</p>
               <div>
@@ -201,7 +199,7 @@ export default function Home() {
             </div>
           </div>
           <div className="relative flex">
-            <Image className="section-main-image" src={main_image3} alt="main_image3" priority />
+            <Image className="section-main-image-third" src={main_image3} alt="main_image3" priority />
             <div className="absolute animation-image-next">
               <Image ref={animationImageRef} className="fade-in-out-fast" width="225" src={animationImage} alt="animationImage" priority />
             </div>

@@ -12,7 +12,7 @@
 
 @media (min-width: 991px) {
   .container {
-    @apply px-[60px];
+    @apply px-[30px];
   }
 }
 

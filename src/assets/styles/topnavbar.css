@@ -1,3 +1,13 @@
+.navbar-wrapper {
+  @apply flex justify-between items-center mt-[40px];
+}
+
 .custom-ul {
   @apply flex flex-row items-center text-md space-x-[40px];
+}
+
+@media (max-width: 768px) {
+  .custom-ul {
+    @apply flex flex-col justify-between items-start text-md;
+  }
 }

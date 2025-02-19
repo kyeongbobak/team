@@ -1,13 +1,5 @@
-.footer-layout {
+.footer-wrapper {
   @apply flex justify-between;
-}
-
-.footer-logo-block {
-  @apply mr-[130px];
-}
-
-.footer-nav {
-  @apply ml-[15px];
 }
 
 .footer-nav-title {
@@ -18,12 +10,8 @@
   @apply space-y-[10px] text-xs leading-[23px] text-[#fff9];
 }
 
-@media (max-width: 991px) {
-  .footer-nav {
-    @apply mr-[30px];
-  }
-
-  .footer-logo-block {
-    @apply mr-[30px];
+@media (max-width: 950px) {
+  .footer-wrapper {
+    @apply flex gap-[15px] flex-wrap;
   }
 }
