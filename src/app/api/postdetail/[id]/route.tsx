@@ -3,9 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
-    const postId = Number(params.id);
+    const { id } = await params;
+    const postId = Number(id);
     const selectedPost = await prisma.post.findUnique({
       where: { post_id: postId },
     });
