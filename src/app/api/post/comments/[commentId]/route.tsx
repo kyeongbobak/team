@@ -6,9 +6,9 @@ import { getCommentById } from "../../../../../utils/server/commentAccess";
 const prisma = new PrismaClient();
 
 // 댓글 삭제
-export async function DELETE(req: NextRequest, { params }: { params: { commentId: string } }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ commentId: string }> }) {
   try {
-    const { commentId } = params;
+    const { commentId } = await params;
 
     const tokenVerification = verifyToken(req);
 
