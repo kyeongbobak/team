@@ -1,5 +1,5 @@
 .navbar-wrapper {
-  @apply flex justify-between items-center mt-[40px];
+  @apply flex justify-between items-center pt-[40px];
 }
 
 .custom-ul {

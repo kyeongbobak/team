@@ -3,7 +3,9 @@ import jwt from "jsonwebtoken";
 
 const SECRET_KEY = process.env.JWT_SECRET!;
 
-export function verifyToken(req: NextRequest) {
+type VerifyTokenResponse = { error: string | null; email: string | null };
+
+export function verifyToken(req: NextRequest): VerifyTokenResponse {
   const authHeader = req.headers.get("Authorization");
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {

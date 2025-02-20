@@ -24,7 +24,7 @@ export default function BlogFeed() {
   useEffect(() => {
     const getBlogList = async (): Promise<void> => {
       try {
-        const { data } = await axios.get(`/api/post`);
+        const { data } = await axios.get<blogListItem[]>(`/api/post`);
         setBlogList(data);
       } catch (error) {
         console.error("Failed to fetch blog posts:", error);
@@ -38,7 +38,7 @@ export default function BlogFeed() {
     <>
       <ul className="flex flex-wrap justify-between gap-y-[60px]">
         {blogList.map((item) => (
-          <li key={item.post_id} className="w-[367px] h-[452px] bg-[#ffffff] rounded-[8px]">
+          <li key={item.post_id} className="w-[355px] h-[452px] bg-[#ffffff] rounded-[8px]">
             <div>
               <div className="h-[192px]">
                 <Image className="rounded-t-[8px]" src={item.thumnail} width={367} height={192} alt="thumnail" priority />

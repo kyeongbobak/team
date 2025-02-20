@@ -20,6 +20,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "회원가입 성공!" });
   } catch (error) {
     console.log("Error fetching data:", error);
-    return NextResponse.json({ error: "회원가입 중 오류가 발생했습니다." }, { status: 500 });
+    return NextResponse.json({ error: "회원가입 중 오류 발생" }, { status: 500 });
   }
 }

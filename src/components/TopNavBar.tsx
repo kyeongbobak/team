@@ -13,14 +13,16 @@ import menu_icon from "../assets/img/menu.png";
 import styles from "../assets/styles/topnavbar.module.css";
 
 export default function TopNavBar() {
-  const [isClicked, setIsClicked] = useState(false);
-  const [slideState, setSlideState] = useState("");
-  const navbarRef = useRef<HTMLDivElement>(null);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [slideState, setSlideState] = useState<string>("");
+
+  const navbarRef = useRef<HTMLDivElement | null>(null);
 
   const pathName = usePathname();
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery({ query: "(max-width : 768px)" });
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const isMobile: boolean = useMediaQuery({ query: "(max-width : 768px)" });
+
+  const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   const handleLogout = () => {
     dispatch(logout());

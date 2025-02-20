@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import "../assets/styles/signup.css";
 
 type SignInfo = {
@@ -17,17 +18,20 @@ export default function SignUp() {
     formState: { errors },
   } = useForm<SignInfo>();
 
+  const router = useRouter();
+
   const handleOnSubmit = async (data: SignInfo): Promise<void> => {
     try {
       const res = await axios.post("/api/auth/signup", data);
       if (res.status === 200) {
         alert("회원가입 성공");
+        router.push("/auth/login");
       } else {
         alert(res.data.error || "회원가입 실패");
       }
     } catch (error) {
       console.log(error);
-      alert("회원가입 중 오류 발생");
+      alert("이미 사용중인 이메일입니다.");
     }
   };
 

@@ -36,12 +36,13 @@ export default function Home() {
   const [offset, setOffset] = useState<number>(0);
 
   const dispatch = useDispatch<AppDispatch>();
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
-  const animationImageTopRef = useRef<HTMLImageElement>(null);
-  const animationImageBottomRef = useRef<HTMLImageElement>(null);
-  const animationImageRef = useRef<HTMLImageElement>(null);
-  const ulRef = useRef<HTMLUListElement>(null);
+  const isAuthenticated: boolean = useSelector((state: RootState) => state.auth.isAuthenticated);
+
+  const animationImageTopRef = useRef<HTMLImageElement | null>(null);
+  const animationImageBottomRef = useRef<HTMLImageElement | null>(null);
+  const animationImageRef = useRef<HTMLImageElement | null>(null);
+  const ulRef = useRef<HTMLUListElement | null>(null);
 
   const {
     register,
@@ -53,7 +54,7 @@ export default function Home() {
   useEffect(() => {
     const getReviewList = async (): Promise<void> => {
       try {
-        const { data } = await axios.get("/api/review");
+        const { data } = await axios.get<reviewItem[]>("/api/review");
         setReviewList(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -99,7 +100,7 @@ export default function Home() {
     }
   };
 
-  const handleSlide = (direction: "left" | "right") => {
+  const handleSlide = (direction: "left" | "right"): void => {
     const slideWidth = 180;
     const maxOffset = -(slideWidth * (reviewList.length - 3));
 

@@ -25,7 +25,7 @@ interface postItem {
 
 export default function PostDetail() {
   const [postListItem, setPostListItem] = useState<postItem | null>(null);
-  const [comment, setComment] = useState<string>();
+  const [comment, setComment] = useState<string>("");
   const [editComment, setEditComment] = useState<boolean[]>([]);
   const [editContents, setEditContents] = useState<string>("");
   const pathname = usePathname();
@@ -39,7 +39,7 @@ export default function PostDetail() {
   useEffect(() => {
     const getPostList = async (): Promise<void> => {
       try {
-        const { data } = await axios.get(`/api/postdetail/${postId}`);
+        const { data } = await axios.get<postItem>(`/api/postdetail/${postId}`);
         setPostListItem(data);
       } catch (error) {
         console.error(" Error fetching data :", error);
