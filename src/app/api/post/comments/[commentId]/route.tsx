@@ -40,8 +40,10 @@ export async function DELETE(req: NextRequest, { params }: { params: { commentId
 }
 
 // 댓글 수정
-export async function PUT(req: NextRequest, context: { params: { commentId: string } }) {
-  const { commentId } = context.params;
+export async function PUT(req: NextRequest, { params }: { params: { commentId: string } }) {
+  const { commentId } = params;
+
+  console.log(commentId, "commentId에요!");
 
   const tokenVerification = verifyToken(req);
 
