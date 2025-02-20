@@ -40,10 +40,10 @@ export async function DELETE(req: NextRequest, { params }: { params: { commentId
 }
 
 // 댓글 수정
-export async function PUT(req: NextRequest, { params }: { params: { commentId: string } }) {
-  const { commentId } = params;
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ commentId: string }> }) {
+  const { commentId } = await params;
 
-  console.log(commentId, "commentId에요!");
+  console.log(params, "commentId에요!");
 
   const tokenVerification = verifyToken(req);
 
