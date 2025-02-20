@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import "../assets/styles/signup.css";
+import "../styles/signup.css";
 import { apiPost } from "../utils/commonApi";
 
 type SignInfo = {

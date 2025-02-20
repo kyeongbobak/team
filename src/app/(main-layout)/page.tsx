@@ -13,7 +13,7 @@ import arrow_forward_blue from "../../assets/img/arrow_forward_blue.png";
 import animationImageTop from "../../assets/img/animationImageTop.png";
 import animationImageBottom from "../../assets/img/animationImageBottom.png";
 import animationImage from "../../assets/img/animationImage.png";
-import "../../assets/styles/home.css";
+import "../../styles/home.css";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";

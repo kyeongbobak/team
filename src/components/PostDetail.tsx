@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import Image from "next/image";
 import profile_blank from "../assets/img/profile_blank.png";
-import "../assets/styles/postdetail.css";
+import "../styles/postdetail.css";
 import { RootState } from "../redux/store";
 import useCommentsList from "../hook/useGetCommentsList";
 import { apiGet, apiPost } from "../utils/commonApi";

@@ -38,3 +38,21 @@
   padding: 0;
   position: absolute;
 }
+
+.footer-wrapper {
+  @apply flex justify-between;
+}
+
+.footer-nav-title {
+  @apply mb-[20px] text-regular font-normal text-white;
+}
+
+.footer-nav-item {
+  @apply space-y-[10px] text-xs leading-[23px] text-[#fff9];
+}
+
+@media (max-width: 950px) {
+  .footer-wrapper {
+    @apply flex gap-[15px] flex-wrap;
+  }
+}

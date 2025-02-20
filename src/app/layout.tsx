@@ -1,5 +1,5 @@
 import { Cabin } from "next/font/google";
-import "../assets/styles/globals.css";
+import "../styles/globals.css";
 import Providers from "./providers";
 
 const cabin = Cabin({

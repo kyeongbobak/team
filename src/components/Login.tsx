@@ -1,7 +1,7 @@
 "use client";
 
 import StyledLink from "next/link";
-import "../assets/styles/login.css";
+import "../styles/login.css";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";

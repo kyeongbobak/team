@@ -4,13 +4,13 @@ import Image from "next/image";
 import logo from "../assets/img/logo.png";
 import logo_other from "../assets/img/logo_other.png";
 import { usePathname } from "next/navigation";
-import "../assets/styles/topnavbar.css";
+import "../styles/topnavbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, persistor } from "../redux/store";
 import { logout } from "../redux/slices/authslice";
 import { useMediaQuery } from "react-responsive";
 import menu_icon from "../assets/img/menu.png";
-import styles from "../assets/styles/topnavbar.module.css";
+import styles from "../styles/topnavbar.module.css";
 
 export default function TopNavBar() {
   const [isClicked, setIsClicked] = useState<boolean>(false);
