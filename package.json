@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^6.3.1",
+    "@prisma/client": "^6.4.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@supabase/supabase-js": "^2.47.11",
     "are-we-there-yet": "^4.0.2",
@@ -26,6 +26,7 @@
     "jsonwebtoken": "^9.0.2",
     "next": "15.1.0",
     "npmlog": "^7.0.1",
+    "prisma": "^6.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
