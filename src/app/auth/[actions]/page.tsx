@@ -5,7 +5,7 @@ import Login from "../../../components/Login";
 import SignUp from "../../../components/SignUp";
 
 export default async function Auth({ params }: { params: { actions: string } }) {
-  const pathname = await params;
+  const pathname = params;
 
   return (
     <>
