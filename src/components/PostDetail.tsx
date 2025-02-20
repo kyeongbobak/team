@@ -73,7 +73,7 @@ export default function PostDetail() {
       setComment("");
       getCommentList();
     } else {
-      alert("Failed to write comment. Please try again!");
+      alert("댓글 작성에 실패했습니다. 다시 시도해주세요!");
     }
   };
 
