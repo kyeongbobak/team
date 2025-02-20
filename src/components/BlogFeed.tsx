@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
-import axios from "axios";
 import Image from "next/image";
 import StyledLink from "next/link";
+import { apiGet } from "../utils/commonApi";
 
 interface blogListItem {
   post_id: number;
@@ -23,11 +23,10 @@ export default function BlogFeed() {
 
   useEffect(() => {
     const getBlogList = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get<blogListItem[]>(`/api/post`);
+      const data = await apiGet<blogListItem[]>(`/api/post`);
+
+      if (data) {
         setBlogList(data);
-      } catch (error) {
-        console.error("Failed to fetch blog posts:", error);
       }
     };
 

@@ -1,6 +1,5 @@
 "use client";
 
-import axios from "axios";
 import StyledLink from "next/link";
 import "../assets/styles/login.css";
 import { useForm } from "react-hook-form";
@@ -8,12 +7,17 @@ import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import { login } from "../redux/slices/authslice";
-import { AxiosError } from "axios";
+import { apiPost } from "../utils/commonApi";
 
 type LoginInfo = {
   email: string;
   password: string;
 };
+
+interface LoginResponse {
+  message: string;
+  token: string;
+}
 
 export default function Login() {
   const {
@@ -27,19 +31,13 @@ export default function Login() {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleOnSubmit = async (data: LoginInfo): Promise<void> => {
-    try {
-      const res = await axios.post("/api/auth/login", data);
+    const res = await apiPost<LoginInfo, LoginResponse>("/api/auth/login", data);
 
-      if (res.status === 200) {
-        dispatch(login({ token: res.data.token, email: data.email }));
-
-        router.push("/");
-      }
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      if (axiosError.status === 401) {
-        alert("Password does not match!");
-      }
+    if (res) {
+      dispatch(login({ token: res.token, email: data.email }));
+      router.push("/");
+    } else {
+      alert("Password does not match!");
     }
   };
 

@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { AppDispatch } from "@/redux/store";
 import { login } from "../../redux/slices/authslice";
+import { apiGet } from "../../utils/commonApi";
 
 interface reviewItem {
   id: number;
@@ -53,11 +54,9 @@ export default function Home() {
 
   useEffect(() => {
     const getReviewList = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get<reviewItem[]>("/api/review");
+      const data = await apiGet<reviewItem[]>("/api/review");
+      if (data) {
         setReviewList(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
       }
     };
 

@@ -10,6 +10,7 @@ import profile_blank from "../assets/img/profile_blank.png";
 import "../assets/styles/postdetail.css";
 import { RootState } from "../redux/store";
 import useCommentsList from "../hook/useGetCommentsList";
+import { apiGet, apiPost } from "../utils/commonApi";
 
 interface postItem {
   post_id: number;
@@ -21,6 +22,18 @@ interface postItem {
   contents_detail: string;
   profile_image: string;
   writer_info: string;
+}
+
+type CommentInfo = {
+  postId: number;
+  email: string | null;
+  contents: string;
+};
+
+interface CommentResponse {
+  postId: number;
+  email: string | null;
+  contents: string;
 }
 
 export default function PostDetail() {
@@ -37,29 +50,30 @@ export default function PostDetail() {
   const { email, token } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
-    const getPostList = async (): Promise<void> => {
-      try {
-        const { data } = await axios.get<postItem>(`/api/postdetail/${postId}`);
+    const getPost = async (): Promise<void> => {
+      const data = await apiGet<postItem>(`/api/postdetail/${postId}`);
+      if (data) {
         setPostListItem(data);
-      } catch (error) {
-        console.error(" Error fetching data :", error);
       }
     };
 
-    getPostList();
+    getPost();
   }, [postId]);
 
   const handleSubmitComment = async (): Promise<void> => {
-    try {
-      await axios.post(`/api/post/comments`, {
-        postId,
-        email,
-        contents: comment,
-      });
+    const body = {
+      postId,
+      email,
+      contents: comment,
+    };
+
+    const res = await apiPost<CommentInfo, CommentResponse>(`/api/post/comments`, body);
+
+    if (res) {
       setComment("");
       getCommentList();
-    } catch (error) {
-      console.log(error);
+    } else {
+      alert("Failed to write comment. Please try again!");
     }
   };
 
