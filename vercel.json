@@ -7,6 +7,5 @@
         "buildCommand": "npx prisma generate && npm run build"
       }
     }
-  ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  ]
 }
