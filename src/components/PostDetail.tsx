@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Image from "next/image";
-import profile_blank from "../assets/img/profile_blank.png";
+import profile_blank from "../../public/assets/img/profile_blank.png";
 import "../styles/postdetail.css";
 import { RootState } from "../redux/store";
 import useCommentsList from "../hook/useGetCommentsList";

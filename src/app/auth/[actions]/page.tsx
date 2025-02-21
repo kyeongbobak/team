@@ -1,6 +1,6 @@
 import Image from "next/image";
 import StyledLink from "next/link";
-import logo_other from "../../../assets/img/logo_other.png";
+import logo_other from "../../../../public/assets/img/logo_other.png";
 import Login from "../../../components/Login";
 import SignUp from "../../../components/SignUp";
 

@@ -2,9 +2,9 @@
 
 import StyledLink from "next/link";
 import Image from "next/image";
-import logo from "../assets/img/logo.png";
-import arrowForward from "../assets/img/arrow_forward.png";
-import check from "../assets/img/check.png";
+import logo from "../../public/assets/img/logo.png";
+import arrowForward from "../../public/assets/img/arrowForward.png";
+import check from "../../public/assets/img/check.png";
 import "../styles/footer.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

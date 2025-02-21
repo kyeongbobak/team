@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 import StyledLink from "next/link";
-import hero_bg from "../../assets/img/hero_bg.png";
-import mockup from "../../assets/img/mockup.png";
-import main_image2 from "../../assets/img/main_image2.png";
-import main_image3 from "../../assets/img/main_image3.png";
-import arrow_right from "../../assets/img/arrow_right.png";
-import stars from "../../assets/img/stars.png";
-import arrow_back_blue from "../../assets/img/arrow_back_blue.png";
-import arrow_forward_blue from "../../assets/img/arrow_forward_blue.png";
-import animationImageTop from "../../assets/img/animationImageTop.png";
-import animationImageBottom from "../../assets/img/animationImageBottom.png";
-import animationImage from "../../assets/img/animationImage.png";
+import hero_bg from "../../../public/assets/img/hero_bg.png";
+import mockup from "../../../public/assets/img/mockup.png";
+import main_image2 from "../../../public/assets/img/main_image2.png";
+import main_image3 from "../../../public/assets/img/main_image3.png";
+import arrow_right from "../../../public/assets/img/arrow_right.png";
+import stars from "../../../public/assets/img/stars.png";
+import arrow_back_blue from "../../../public/assets/img/arrow_back_blue.png";
+import arrow_forward_blue from "../../../public/assets/img/arrow_forward_blue.png";
+import animationImageTop from "../../../public/assets/img/animationImageTop.png";
+import animationImageBottom from "../../../public/assets/img/animationImageBottom.png";
+import animationImage from "../../../public/assets/img/animationImage.png";
 import "../../styles/home.css";
 import { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";

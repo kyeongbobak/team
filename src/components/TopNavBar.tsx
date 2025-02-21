@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import StyledLink from "next/link";
 import Image from "next/image";
-import logo from "../assets/img/logo.png";
-import logo_other from "../assets/img/logo_other.png";
+import logo from "../../public/assets/img/logo.png";
+import logo_other from "../../public/assets/img/logo_other.png";
 import { usePathname } from "next/navigation";
 import "../styles/topnavbar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, persistor } from "../redux/store";
 import { logout } from "../redux/slices/authslice";
 import { useMediaQuery } from "react-responsive";
-import menu_icon from "../assets/img/menu.png";
+import menu_icon from "../../public/assets/img/menu.png";
 import styles from "../styles/topnavbar.module.css";
 
 export default function TopNavBar() {
