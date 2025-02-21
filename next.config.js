@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ["cdn.prod.website-files.com", "wczcevkruadggzcezwzg.supabase.co"],
+    domains: ["wczcevkruadggzcezwzg.supabase.co"],
   },
 };
