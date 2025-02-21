@@ -1,5 +1,5 @@
 "use client";
-
+//
 import Image from "next/image";
 import StyledLink from "next/link";
 import hero_bg from "../../../public/assets/img/hero_bg.png";
