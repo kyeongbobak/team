@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-import { verifyToken } from "../../../../../utils/server/verifyToken";
-import { getCommentById } from "../../../../../utils/server/commentAccess";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
+import { verifyToken } from "@/utils/server/verifyToken";
+import { getCommentById } from "@/utils/server/commentAccess";
 
 // 댓글 삭제
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ commentId: string }> }) {
